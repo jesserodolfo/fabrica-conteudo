@@ -1,0 +1,14 @@
+{
+  "nome": "Nome da Empresa",
+  "handle": "@perfil",
+  "verificado": false,
+  "foto_perfil": "clientes/NOME/fotos/logo.jpg",
+  "cor": "#1f6feb",
+  "cor_escura": "#1558c0",
+  "cor_clara": "#e8f0fe",
+  "cor_destaque_escuro": "#5b9bff",
+  "zernio": {"account_id": "", "profile_id": "", "plataforma": "instagram"},
+  "notion": {"calendario_data_source": "", "referencias_data_source": ""},
+  "cta_padrao": "",
+  "max_hashtags": 5
+}
