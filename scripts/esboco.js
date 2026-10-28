@@ -274,7 +274,7 @@ async function main(){
     arrow(x0-20,y,x1+20,y+2,{bend:0.01,sw:4.2,hl:28});
     D.pts.forEach((p,i)=>{const x=x0+(x1-x0)*i/(D.pts.length-1), last=i===D.pts.length-1;
       ell(x,y,last?60:48,last?60:48,{c:last?INK:RED,fill:last?HI:null,fo:{fillStyle:'solid'},sw:4.4,r:0.8});
-      txt(x,y-96,p.t,{size:46,a:'middle'}); if(p.h)txt(x,y+84,p.h,{size:44,a:'middle',c:RED});});
+      txt(x,y-96,p.t,{size:46,a:'middle'}); if(p.ic)icLinha(p.ic,x,y+170,last); if(p.h)txt(x,y+84,p.h,{size:44,a:'middle',c:RED});});
     if(D.nota)txt(W/2,H-50,D.nota,{size:30,a:'middle',wt:400,c:'#555'});
   };
 
@@ -298,14 +298,53 @@ async function main(){
     line(cx,cy,cx+R*0.52*Math.sin(ha),cy-R*0.52*Math.cos(ha),{c:INK,sw:9,r:0.3});
     line(cx,cy,cx+R*0.78*Math.sin(ma),cy-R*0.78*Math.cos(ma),{c:INK,sw:6,r:0.3});
     ell(cx,cy,R*0.13,R*0.13,{c:c,fill:c,fo:{fillStyle:'solid'},sw:3,r:0.4});}
+  /* icones da capa nota-contador */
+  function folha(cx,cy,w,h,rot,c,fillc){const a=rot*Math.PI/180,co=Math.cos(a),si=Math.sin(a);
+    const P=[[-w/2,-h/2],[w/2,-h/2],[w/2,h/2],[-w/2,h/2],[-w/2,-h/2]].map(p=>[cx+p[0]*co-p[1]*si,cy+p[0]*si+p[1]*co]);
+    add(rc.polygon(P.slice(0,4),base({stroke:c,strokeWidth:4,roughness:1,fill:fillc||'#fff',fillStyle:'solid'})));
+    [-0.22,0,0.22].forEach(k=>{const y=h*k,x0=-w*0.3,x1=w*0.3;line(cx+x0*co-y*si,cy+x0*si+y*co,cx+x1*co-y*si,cy+x1*si+y*co,{c:c,sw:3,r:0.6})});}
+  function icNotas(cx,cy,R,c){
+    folha(cx-R*0.62,cy+R*0.1,R*0.8,R*1.0,-14,c);
+    folha(cx+R*0.66,cy+R*0.18,R*0.8,R*1.0,12,c);
+    folha(cx+R*0.05,cy-R*0.12,R*0.84,R*1.05,-3,c);
+    /* envelope (e-mail) no canto superior esquerdo */
+    const ex=cx-R*0.95,ey=cy-R*0.78,ew=R*0.7,eh=R*0.48;
+    box(ex,ey,ew,eh,{c:c,sw:3.6,fill:'#fff',fo:{fillStyle:'solid'}}); lp([[ex,ey],[ex+ew/2,ey+eh*0.58],[ex+ew,ey]],{c:c,sw:3.4,r:0.8});
+    /* balao de conversa (WhatsApp, generico) no canto superior direito */
+    const bx=cx+R*0.34,by=cy-R*0.95,bw=R*0.78,bh=R*0.5;
+    box(bx,by,bw,bh,{c:c,sw:3.6,fill:'#fff',fo:{fillStyle:'solid'}}); lp([[bx+bw*0.2,by+bh],[bx+bw*0.12,by+bh+R*0.2],[bx+bw*0.42,by+bh]],{c:c,sw:3.4,r:0.8});
+    [0.3,0.5,0.7].forEach(k=>ell(bx+bw*k,by+bh/2,8,8,{c:c,fill:c,fo:{fillStyle:'solid'},sw:2,r:0.3}));}
+  function icPasta(cx,cy,R,c){
+    const w=R*2.0,h=R*1.45,x=cx-w/2,y=cy-h/2+R*0.1;
+    lp([[x,y],[x+w*0.38,y],[x+w*0.46,y-R*0.26],[x+w*0.1,y-R*0.26],[x,y]],{c:c,sw:4,r:0.7});
+    box(x,y,w,h,{c:c,sw:5,fill:'#fff',fo:{fillStyle:'solid'}});
+    lp([[cx-R*0.55,cy+R*0.3],[cx-R*0.18,cy+R*0.62],[cx+R*0.5,cy-R*0.12]],{c:c,sw:11,r:0.6});}
+  function icLinha(k,x,y,last){const G='#1f7a3a';x=Math.max(125,Math.min(W-125,x));
+    if(k==='folha'){folha(x,y,150,190,-4,INK);}
+    else if(k==='ok'){ell(x,y,190,190,{c:G,sw:5,fill:'#c9f0cf',fo:{fillStyle:'solid'}});lp([[x-52,y+2],[x-14,y+42],[x+56,y-40]],{c:G,sw:16,r:0.6});}
+    else if(k==='envio'){const w=210,h=140;box(x-w/2,y-h/2,w,h,{c:INK,sw:4.4,fill:HI,fo:{hachureGap:14,fillWeight:1.8}});lp([[x-w/2,y-h/2],[x,y+h*0.1],[x+w/2,y-h/2]],{c:INK,sw:4,r:0.8});}}
+  T.agenda=()=>{
+    const w=Math.min(W-180,560),h=H-210,x=(W-w)/2,y=36;
+    box(x,y,w,h,{sw:4.6,fill:'#fff',fo:{fillStyle:'solid'}});
+    box(x,y,w,86,{sw:4.6,fill:RED,fo:{fillStyle:'solid'},c:RED});
+    txt(x+w/2,y+46,D.mes||'fim do mês',{size:48,c:'#fff',a:'middle'});
+    [x+90,x+w-90].forEach(px=>{line(px,y-22,px,y+24,{sw:9,r:0.5})});
+    const cols=7,rows=5,cw=(w-60)/cols,ch=(h-86-50)/rows,gx=x+30,gy=y+86+24;
+    for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){const n=r*7+c+1;if(n>31)continue;
+      const cx=gx+cw*c+cw/2,cy=gy+ch*r+ch/2; txt(cx,cy,String(n),{size:30,wt:400,c:'#666',a:'middle'});}
+    const n=31,r=4,c=2,cx=gx+cw*c+cw/2,cy=gy+ch*r+ch/2;
+    ell(cx,cy,cw*0.95,ch*0.95,{c:'#1f7a3a',sw:5,fill:'#c9f0cf',fo:{fillStyle:'solid'}}); txt(cx,cy,'31',{size:32,c:'#1f7a3a',a:'middle'});
+    txt(W/2,H-70,D.t||'roda sozinho',{size:42,a:'middle'}); if(D.sub)txt(W/2,H-24,D.sub,{size:30,a:'middle',wt:400,c:'#555'});
+  };
+
   T.capa=()=>{
     const g=36, cw=(W-g)/2, ch=H-4, R=Math.min(cw*0.26,118);
     D.cards.forEach((k,i)=>{const x=i*(cw+g), c=i?'#1f7a3a':RED, cx=x+cw/2;
       box(x,2,cw,ch,{c:c,sw:4.4,fill:i?'#c9f0cf':'#ffb8b2',fo:{fillStyle:'solid'}});
       txt(cx,52,k.lbl,{size:44,c:c,a:'middle'});
-      relogio(cx,104+R+8,R,k.h,k.m,c);
+      if(k.icon==='notas')icNotas(cx,104+R+8,R,c); else if(k.icon==='pasta')icPasta(cx,104+R+8,R,c); else relogio(cx,104+R+8,R,k.h,k.m,c);
       const y2=104+R*2+80;
-      txt(cx,y2,k.big,{size:fit(k.big,cw-40,76,700),c:c,a:'middle'});
+      txt(cx,y2,k.big,{size:fit(k.big,cw-90,76,700),c:c,a:'middle'});
       txt(cx,y2+66,k.l1,{size:fit(k.l1,cw-40,38,700),a:'middle'});
       txt(cx,y2+66+78,k.l2,{size:fit(k.l2,cw-40,38,700),c:c,a:'middle',wt:400});});
   };
