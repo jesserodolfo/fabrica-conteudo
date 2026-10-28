@@ -16,9 +16,25 @@ FONTS = f"""
 #d{{flex:1 1 0;min-height:0;width:100%}}
 """
 
+def capa_tweet(s, M):
+    # capa estilo tweet: avatar grande, texto corrido com negrito e desenho embaixo (#d)
+    h0 = render.slide_html(dict(s, body=''), M)
+    css = h0.split('<style>')[1].split('</style>')[0]
+    foto = os.path.abspath(M['foto_perfil'])
+    extra = (".slide{padding:0 70px}.tw-h{display:flex;align-items:center;gap:34px;margin-top:70px}"
+      ".tw-h .av{width:150px;height:150px;border-radius:50%;background:url('file://"+foto+"') center/cover;flex:none}"
+      ".tw-h b{font-size:46px;font-weight:800;display:flex;align-items:center;gap:12px}.tw-h span{display:block;font-size:34px;color:#8a8a8a;font-weight:500;margin-top:4px}"
+      ".tw-t{font-size:41px;line-height:1.34;color:#111;margin-top:46px;font-weight:400}.tw-t p{margin:0 0 26px}.tw-t b{font-weight:800}"
+      ".tw-d{flex:1 1 0;min-height:0;margin-top:6px;position:relative}")
+    check = getattr(render, 'CHECK', '')
+    return (f'<!doctype html><html><head><meta charset="utf-8"><style>{css}{extra}</style></head><body>'
+      f'<div class="slide"><div class="tw-h"><div class="av"></div><div><b>{M["nome"]}{check}</b><span>{M["handle"]}</span></div></div>'
+      f'<div class="tw-t">{s["tweet"]}</div><div id="d" class="tw-d"></div>'
+      f'<div class="foot"><span>{M["handle"]}</span><span>{s.get("foot_r") or "arrasta"}</span></div></div></body></html>')
+
 def html_slide(s, M, spec):
     s2 = dict(s); s2['body'] = '<div id="d"></div>'
-    h = render.slide_html(s2, M)
+    h = capa_tweet(s, M) if s.get('tweet') else render.slide_html(s2, M)
     rough = open(os.path.join(HERE, 'vendor', 'rough.js')).read()
     js = open(os.path.join(HERE, 'esboco.js')).read()
     esb = json.dumps({"cor": M['cor'], "slide": spec}, ensure_ascii=False)

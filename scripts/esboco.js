@@ -285,6 +285,28 @@ async function main(){
     stamp(W-130,32,D.ex||'EXEMPLO');
   };
 
+
+  /* NOVO capa: 2 cards antes x agora, cada um com relogio desenhado */
+  function relogio(cx,cy,R,hh,mm,c,o){o=o||{};
+    ell(cx,cy,R*2,R*2,{c:c,sw:6,r:0.9,fill:'#fff',fo:{fillStyle:'solid'}});
+    for(let i=0;i<12;i++){const a=i*Math.PI/6, big=i%3===0, r1=R*(big?0.74:0.83), r2=R*0.92;
+      line(cx+r1*Math.sin(a),cy-r1*Math.cos(a),cx+r2*Math.sin(a),cy-r2*Math.cos(a),{c:INK,sw:big?5:3,r:0.4});}
+    const ma=mm*Math.PI/30, ha=(hh%12+mm/60)*Math.PI/6;
+    line(cx,cy,cx+R*0.52*Math.sin(ha),cy-R*0.52*Math.cos(ha),{c:INK,sw:9,r:0.3});
+    line(cx,cy,cx+R*0.78*Math.sin(ma),cy-R*0.78*Math.cos(ma),{c:INK,sw:6,r:0.3});
+    ell(cx,cy,R*0.13,R*0.13,{c:c,fill:c,fo:{fillStyle:'solid'},sw:3,r:0.4});}
+  T.capa=()=>{
+    const g=36, cw=(W-g)/2, ch=H-4, R=Math.min(cw*0.26,118);
+    D.cards.forEach((k,i)=>{const x=i*(cw+g), c=i?INK:RED, cx=x+cw/2;
+      box(x,2,cw,ch,{c:c,sw:i?4.6:4.2,fill:i?HI:'#ffb8b2',fo:{fillStyle:'solid'}});
+      txt(cx,52,k.lbl,{size:44,c:c,a:'middle'});
+      relogio(cx,104+R+8,R,k.h,k.m,c);
+      const y2=104+R*2+80;
+      txt(cx,y2,k.big,{size:fit(k.big,cw-40,76,700),c:c,a:'middle'});
+      txt(cx,y2+66,k.l1,{size:fit(k.l1,cw-40,38,700),a:'middle'});
+      txt(cx,y2+66+78,k.l2,{size:fit(k.l2,cw-40,38,700),c:c,a:'middle',wt:400});});
+  };
+
   (T[D.type]||(()=>{}))();
   window.__ready=true;
 }
