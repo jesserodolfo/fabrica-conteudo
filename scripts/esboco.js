@@ -7,12 +7,12 @@ async function main(){
   const E=window.ESB, RED=E.cor, REDL='#f4a7a1';
   await Promise.all(['700 30px Kalam','400 30px Kalam'].map(f=>document.fonts.load(f)));
   const host=document.getElementById('d'); const r=host.getBoundingClientRect();
-  const W=Math.round(r.width), H=Math.round(r.height)-26;
+  let W=Math.round(r.width), H=Math.round(r.height)-26;
   const svg=document.createElementNS(NS,'svg'); svg.setAttribute('width',W); svg.setAttribute('height',H); svg.setAttribute('viewBox',`0 0 ${W} ${H}`); svg.style.display='block'; svg.style.overflow='visible';
   host.appendChild(svg);
   const rc=rough.svg(svg); let seed=11;
   const cv=document.createElement('canvas').getContext('2d');
-  const add=n=>{svg.appendChild(n);return n};
+  let layer=svg; const add=n=>{layer.appendChild(n);return n};
   const base=o=>Object.assign({roughness:1.5,bowing:1.4,strokeWidth:3.4,stroke:INK,seed:(seed+=17)},o||{});
   const fillo=(c,o)=>Object.assign({fill:c,fillStyle:'hachure',hachureGap:12,fillWeight:2,hachureAngle:-41},o||{});
   function box(x,y,w,h,o){o=o||{};add(rc.rectangle(x,y,w,h,base(Object.assign({strokeLineDash:o.dash?[14,10]:undefined},o.fill?fillo(o.fill,o.fo):{},{stroke:o.c||INK,strokeWidth:o.sw||3.4}))))}
@@ -38,6 +38,9 @@ async function main(){
   function gtxt(s,x,y,sz){txt(x,y,s,{size:sz||24,wt:400,c:GR})}
 
   const D=E.slide, T={};
+  if(D.panel){const P={r:['#ffd9d5',RED],g:['#c9f0cf','#1f7a3a'],k:['#f1f1f1',INK]}[D.panel];
+    box(2,2,W-4,H-4,{c:P[1],sw:4.4,fill:P[0],fo:{fillStyle:'solid'}});
+    const gg=document.createElementNS(NS,'g'); gg.setAttribute('transform','translate(34,34)'); svg.appendChild(gg); layer=gg; W-=68; H-=68;}
 
   /* 1. o que falam x o que funciona */
   T.falam=()=>{
@@ -297,8 +300,8 @@ async function main(){
     ell(cx,cy,R*0.13,R*0.13,{c:c,fill:c,fo:{fillStyle:'solid'},sw:3,r:0.4});}
   T.capa=()=>{
     const g=36, cw=(W-g)/2, ch=H-4, R=Math.min(cw*0.26,118);
-    D.cards.forEach((k,i)=>{const x=i*(cw+g), c=i?INK:RED, cx=x+cw/2;
-      box(x,2,cw,ch,{c:c,sw:i?4.6:4.2,fill:i?HI:'#ffb8b2',fo:{fillStyle:'solid'}});
+    D.cards.forEach((k,i)=>{const x=i*(cw+g), c=i?'#1f7a3a':RED, cx=x+cw/2;
+      box(x,2,cw,ch,{c:c,sw:4.4,fill:i?'#c9f0cf':'#ffb8b2',fo:{fillStyle:'solid'}});
       txt(cx,52,k.lbl,{size:44,c:c,a:'middle'});
       relogio(cx,104+R+8,R,k.h,k.m,c);
       const y2=104+R*2+80;

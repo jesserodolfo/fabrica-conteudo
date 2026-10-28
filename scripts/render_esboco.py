@@ -24,7 +24,7 @@ def capa_tweet(s, M):
     extra = (".slide{padding:0 70px}.tw-h{display:flex;align-items:center;gap:34px;margin-top:70px}"
       ".tw-h .av{width:150px;height:150px;border-radius:50%;background:url('file://"+foto+"') center/cover;flex:none}"
       ".tw-h b{font-size:46px;font-weight:800;display:flex;align-items:center;gap:12px}.tw-h span{display:block;font-size:34px;color:#8a8a8a;font-weight:500;margin-top:4px}"
-      ".tw-t{font-size:41px;line-height:1.34;color:#111;margin-top:46px;font-weight:400}.tw-t p{margin:0 0 26px}.tw-t b{font-weight:800}"
+      ".tw-t{font-size:"+str(s.get("tsize",41))+"px;line-height:1.34;color:#111;margin-top:46px;font-weight:400}.tw-t p{margin:0 0 26px}.tw-t b{font-weight:800}"
       ".tw-d{flex:1 1 0;min-height:0;margin-top:6px;position:relative}")
     check = getattr(render, 'CHECK', '')
     return (f'<!doctype html><html><head><meta charset="utf-8"><style>{css}{extra}</style></head><body>'
