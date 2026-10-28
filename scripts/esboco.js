@@ -41,15 +41,16 @@ async function main(){
 
   /* 1. o que falam x o que funciona */
   T.falam=()=>{
-    const mid=W/2, top=64, n=Math.max(D.left.length,D.right.length), step=(H-top-10)/n;
+    const HH=D.robo?H-250:H; const mid=W/2, top=64, n=Math.max(D.left.length,D.right.length), step=(HH-top-10)/n;
+    if(D.robo){robo(mid-62,HH+78,124);} if(D.ex)gtxt(D.ex,0,H-8,26);
     txt(mid/2,24,D.lt,{size:34,c:RED,a:'middle'}); under(mid/2-meas(D.lt,34)/2,42,meas(D.lt,34),RED);
     txt(mid+mid/2,24,D.rt,{size:34,a:'middle'}); under(mid+mid/2-meas(D.rt,34)/2,42,meas(D.rt,34),INK);
-    line(mid,0,mid,H,{dash:true,c:'#777',sw:3});
+    line(mid,0,mid,HH-6,{dash:true,c:'#777',sw:3});
     D.left.forEach((s,i)=>{const cy=top+step*i+step/2, w=Math.min(330,mid-70), cx=(i%2?mid/2+34:mid/2-34);
       const h=Math.min(96,step-16); ell(cx,cy,w,h,{c:RED,fill:i%2?null:REDL,fo:{hachureGap:13,fillWeight:1.6}}); ctr(cx-w/2,cy-h/2,w,h,s,{c:RED,size:36,pad:56});});
     D.right.forEach((s,i)=>{const y=top+step*i+(step-Math.min(100,step-16))/2, h=Math.min(100,step-16), x=mid+30, w=W-x;
       box(x,y,w,h,{fill:i===0?HI:null,fo:{hachureGap:13,fillWeight:1.8}}); if(D.nonum)check(x+14,y+h/2+4);else txt(x+18,y+h/2+2,(i+1)+'.',{size:34,c:RED}); const sz=fit(s,w-84,34,700); txt(x+62,y+h/2+2,s,{size:sz});});
-    arrow(mid-36,H*0.5+2,mid+40,H*0.5+2,{c:INK,bend:-0.14,sw:3.8});
+    arrow(mid-36,HH*0.5+2,mid+40,HH*0.5+2,{c:INK,bend:-0.14,sw:3.8});
   };
 
   /* 2. errado x certo */
@@ -164,10 +165,10 @@ async function main(){
     const n=D.items.length, gap=24, h=(H-gap*(n-1))/n;
     D.items.forEach((it,i)=>{const y=i*(h+gap), last=i===n-1;
       box(0,y,W,h,{fill:last?HIL:null,fo:{hachureGap:15,fillWeight:1.5},sw:3.6});
-      ell(52,y+h/2,58,58,{c:RED,sw:3.4,r:1.1}); txt(52,y+h/2+3,String(i+1),{size:34,a:'middle',c:RED});
-      txt(104,y+h*0.36,it.t,{size:fit(it.t,W-130,36,700)});
-      txt(104,y+h*0.72,it.d,{size:fit(it.d,W-130,28,400),wt:400,c:'#555'});
-      if(i<n-1)arrow(W/2+(i%2?-20:20),y+h+2,W/2+(i%2?-16:24),y+h+gap-2,{c:RED,hl:14,sw:3,bend:0.2});
+      if(D.chk){check(30,y+h/2+2,RED);}else{ell(52,y+h/2,58,58,{c:RED,sw:3.4,r:1.1}); txt(52,y+h/2+3,String(i+1),{size:34,a:'middle',c:RED});}
+      if(it.d){txt(104,y+h*0.36,it.t,{size:fit(it.t,W-130,36,700)});
+      txt(104,y+h*0.72,it.d,{size:fit(it.d,W-130,28,400),wt:400,c:'#555'});}else txt(104,y+h/2+2,it.t,{size:fit(it.t,W-130,42,700)});
+      if(i<n-1&&!D.chk)arrow(W/2+(i%2?-20:20),y+h+2,W/2+(i%2?-16:24),y+h+gap-2,{c:RED,hl:14,sw:3,bend:0.2});
     });
   };
 
@@ -180,8 +181,8 @@ async function main(){
     const by=H-ctaH, bh=Math.round(ctaH*0.56);
     box(0,by,W,bh,{fill:HIL,fo:{hachureGap:15,fillWeight:1.5},sw:3.8});
     const pre=D.cta.replace(D.kw,''), sz=46; txt(24,by+bh*0.36,pre,{size:sz});
-    const px=24+meas(pre,sz,700); txt(px,by+bh*0.36+1,D.kw,{size:sz-4,ff:'Archivo, sans-serif',wt:900,c:RED});
-    const kwid=(()=>{cv.font='900 '+(sz-4)+'px Archivo';return cv.measureText(D.kw).width})(); ell(px+kwid/2,by+bh*0.36+2,kwid+30,bh*0.5,{c:RED,sw:3.2,r:1.2});
+    const px=24+meas(pre,sz,700)+(D.kwgap||0); txt(px,by+bh*0.36+1,D.kw,{size:sz-4,ff:'Archivo, sans-serif',wt:900,c:RED});
+    const kwid=(()=>{cv.font='900 '+(sz-4)+'px Archivo';return cv.measureText(D.kw).width})(); ell(px+kwid/2,by+bh*0.36+2,kwid+(D.kwpad||30),bh*0.5,{c:RED,sw:3.2,r:1.2});
     txt(24,by+bh*0.78,D.sub,{size:fit(D.sub,W-48,28,400),wt:400,c:'#333'});
     const bw=Math.min(W,meas(D.btn,32,700)+70), bx=W-bw, byy=by+bh+16;
     box(bx,byy,bw,ctaH-bh-16,{c:RED,fill:REDL,fo:{hachureGap:12,fillWeight:1.8},sw:3.8}); ctr(bx,byy,bw,ctaH-bh-16,D.btn,{size:32,c:INK});
@@ -200,6 +201,88 @@ async function main(){
     const tx=D.text, sz=fit(tx,W-60,46,700); txt(28,y+ch*0.70,tx,{size:sz});
     const cx=28+meas(tx,sz,700)+10; if(cx<W-20)line(cx,y+ch*0.70-22,cx+2,y+ch*0.70+22,{c:RED,sw:4,r:0.8});
     arrow(mid/2,eh+8,mid/2+30,y-10,{c:RED,bend:0.1,hl:20});arrow(mid+mid/2,eh+8,mid+mid/2-30,y-10,{c:INK,bend:-0.1,hl:20});
+  };
+
+
+  /* robozinho original (cabeca quadrada, antena, olhos, sorriso) */
+  function robo(x,y,s){
+    const hw=s, hh=s*0.8;
+    line(x+hw/2,y,x+hw/2+3,y-s*0.22,{sw:3.4}); ell(x+hw/2+3,y-s*0.28,s*0.14,s*0.14,{c:RED,fill:RED,fo:{hachureGap:5,fillWeight:2},sw:3});
+    box(x,y,hw,hh,{fill:HIL,fo:{hachureGap:12,fillWeight:1.4},sw:3.8});
+    box(x-s*0.07,y+hh*0.35,s*0.07,hh*0.3,{sw:3}); box(x+hw,y+hh*0.35,s*0.07,hh*0.3,{sw:3});
+    ell(x+hw*0.30,y+hh*0.36,s*0.17,s*0.17,{c:RED,fill:RED,fo:{hachureGap:4,fillWeight:2},sw:3,r:1});
+    ell(x+hw*0.70,y+hh*0.36,s*0.17,s*0.17,{c:RED,fill:RED,fo:{hachureGap:4,fillWeight:2},sw:3,r:1});
+    lp([[x+hw*0.28,y+hh*0.66],[x+hw*0.40,y+hh*0.80],[x+hw*0.60,y+hh*0.80],[x+hw*0.72,y+hh*0.66]],{c:INK,sw:3.6,r:1});
+    box(x+hw*0.25,y+hh+8,hw*0.5,s*0.22,{sw:3.4});
+  }
+  function stamp(x,y,s,rot){const sz=30,w=meas(s,sz,700)+36; const g=document.createElementNS(NS,'g');
+    box(x-w/2,y-26,w,52,{c:RED,sw:3.2,dash:true}); txt(x,y+2,s,{size:sz,c:RED,a:'middle'});}
+
+  /* NOVO robo: so o robozinho, centralizado, com frase opcional */
+  T.robo=()=>{const s=Math.min(260,H*0.4);robo(W/2-s/2,H/2-s/2,s);if(D.t)txt(W/2,H-30,D.t,{size:34,a:'middle'});};
+
+  /* NOVO grafico: barras simples a mao */
+  T.grafico=()=>{
+    const n=D.bars.length, ox=10, oy=H-120, ph=oy-110, pw=W-ox-10, g=40, bw=(pw-g*(n+1))/n, mx=Math.max(...D.bars.map(b=>b.v),1);
+    arrow(ox,oy,ox+pw,oy+2,{bend:0.01,sw:3.6});
+    D.bars.forEach((b,i)=>{const x=ox+g+i*(bw+g), h=b.v>0?ph*b.v/mx:0;
+      if(b.v>0)box(x,oy-h,bw,h,{c:RED,fill:REDL,fo:{hachureGap:12,fillWeight:2},sw:3.8});
+      else check(x+bw/2-18,oy-34,INK);
+      txt(x+bw/2,oy-h-(b.v>0?34:84),b.val,{size:40,a:'middle',c:b.v>0?RED:INK});
+      txt(x+bw/2,oy+44,b.l,{size:34,a:'middle',wt:400,c:'#555'});});
+    stamp(W-130,40,D.ex||'EXEMPLO'); gtxt('erros por semana',0,24,28);
+  };
+
+  /* NOVO fluxo: pasta com 2 caixas que viram o PDF */
+  T.fluxo=()=>{
+    const fh=H*0.46, fy=20, tab=64;
+    box(0,fy+tab-8,W,fh,{c:'#666',dash:true,sw:3.4}); lp([[0,fy+tab-8],[0,fy],[W*0.34,fy],[W*0.38,fy+tab-8]],{c:'#666',sw:3.4});
+    txt(18,fy+tab/2-4,D.pasta,{size:30,c:'#555',wt:400});
+    const bw=(W-3*40)/2, bh=fh-110, by=fy+tab+34;
+    D.fontes.forEach((f,i)=>{const x=40+i*(bw+40); box(x,by,bw,bh,{}); ctr(x,by,bw,bh,f,{size:40});});
+    const py=by+bh+(fh-bh-34-tab)+110, ph=H-py-40;
+    D.fontes.forEach((f,i)=>{const x=40+i*(bw+40)+bw/2; arrow(x,by+bh+34,W/2+(i?30:-30),py-6,{c:RED,bend:i?-0.08:0.08,sw:3.8,hl:22});});
+    const pw=W*0.62; box((W-pw)/2,py,pw,Math.min(ph,150),{fill:HI,fo:{hachureGap:12,fillWeight:1.8},sw:4.2}); ctr((W-pw)/2,py,pw,Math.min(ph,150),D.saida,{size:44});
+    if(D.ex)gtxt(D.ex,0,H-6,26);
+  };
+
+  /* NOVO skill: caixa SKILL com linhas curtas + robo */
+  T.skill=()=>{
+    const bw=W*0.70, n=D.lines.length, hh=84, lh=(H-hh-40)/n>96?96:(H-hh-40)/n, bh=hh+lh*n+24, y0=Math.max(0,(H-bh)/2);
+    box(0,y0,bw,bh,{sw:4}); box(0,y0,bw,hh,{fill:HI,fo:{hachureGap:12,fillWeight:1.8},sw:4});
+    txt(24,y0+hh/2+2,D.t,{size:44,c:INK}); 
+    D.lines.forEach((l,i)=>{const y=y0+hh+14+lh*i+lh/2; ell(46,y,40,40,{c:RED,sw:3,r:1}); txt(46,y+2,String(i+1),{size:26,a:'middle',c:RED}); txt(86,y+2,l,{size:fit(l,bw-110,36,700)});});
+    const rs=Math.min(190,W-bw-60); robo(bw+(W-bw)/2-rs/2,y0+bh-rs*0.8-rs*0.22-30,rs);
+    arrow(bw+(W-bw)/2-rs*0.2,y0+bh-rs*1.35,bw+10,y0+bh*0.55,{c:RED,bend:0.2,hl:18,sw:3.4});
+  };
+
+  /* NOVO alertas: 3 itens com triangulo de aviso */
+  T.alertas=()=>{
+    const n=D.items.length, gap=30, h=Math.min(190,(H-gap*(n-1)-40)/n), y0=Math.max(0,(H-n*h-gap*(n-1)-40)/2);
+    D.items.forEach((t,i)=>{const y=y0+i*(h+gap); box(0,y,W,h,{sw:3.6,fill:i===0?HIL:null,fo:{hachureGap:15,fillWeight:1.5}});
+      const cx=70,cy=y+h/2; lp([[cx-38,cy+30],[cx,cy-36],[cx+38,cy+30],[cx-38,cy+30]],{c:RED,sw:4.2,r:1}); txt(cx,cy+8,'!',{size:42,a:'middle',c:RED});
+      txt(140,cy+2,t,{size:fit(t,W-170,44,700)});});
+    if(D.ex)gtxt(D.ex,0,H-6,26);
+  };
+
+  /* NOVO linha: linha do tempo com 3 pontos */
+  T.linha=()=>{
+    const y=H*0.42, x0=60, x1=W-60;
+    arrow(x0-20,y,x1+20,y+2,{bend:0.01,sw:4.2,hl:28});
+    D.pts.forEach((p,i)=>{const x=x0+(x1-x0)*i/(D.pts.length-1), last=i===D.pts.length-1;
+      ell(x,y,last?60:48,last?60:48,{c:last?INK:RED,fill:last?HI:null,fo:{fillStyle:'solid'},sw:4.4,r:0.8});
+      txt(x,y-96,p.t,{size:46,a:'middle'}); if(p.h)txt(x,y+84,p.h,{size:44,a:'middle',c:RED});});
+    if(D.nota)txt(W/2,H-50,D.nota,{size:30,a:'middle',wt:400,c:'#555'});
+  };
+
+  /* NOVO numeros: 3 numeros grandes + selo EXEMPLO */
+  T.numeros=()=>{
+    const n=D.items.length, gap=30, h=Math.min(200,(H-gap*(n-1)-90)/n), y0=70;
+    D.items.forEach((it,i)=>{const y=y0+i*(h+gap), last=i===n-1;
+      box(0,y,W,h,{sw:last?4.2:3.6,fill:last?HI:null,fo:{hachureGap:13,fillWeight:1.8}});
+      txt(30,y+h/2+2,it.l,{size:48,wt:700,c:last?INK:'#444'});
+      txt(W-30,y+h/2+2,it.v,{size:60,a:'end',c:last?INK:RED});});
+    stamp(W-130,32,D.ex||'EXEMPLO');
   };
 
   (T[D.type]||(()=>{}))();
