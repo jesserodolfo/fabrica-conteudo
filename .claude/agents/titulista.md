@@ -14,7 +14,7 @@ Entregue em `posts/<pasta>/capa.md`:
 - "De graça" só entra se o dossiê confirmar.
 - Sua recomendação de qual usar e por quê, em uma linha.
 
-## Carrossel (exceção)
+## Carrossel (1 por dia, em série)
 Entregue em `posts/<pasta>/capa.md`:
 - 4 títulos de capa diferentes entre si (curiosidade, número, contraste, notícia). Até 12 palavras. Marque a palavra forte com <r></r>.
 - Para cada um, a linha de apoio (sub) e o texto da etiqueta (pill).

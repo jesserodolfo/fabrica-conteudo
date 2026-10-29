@@ -14,7 +14,7 @@ Você monta o visual. Não muda texto aprovado.
 
 Devolva os caminhos de `texto-tela.md` e `gravar.md`, a lista de prints e um aviso só se faltar tela pra alguma frase.
 
-## Carrossel (exceção)
+## Carrossel (1 por dia, em série)
 1. Converta o roteiro aprovado em `posts/<pasta>/slides.json` no formato do scripts/render.py.
 2. Rode `.venv/bin/python scripts/render.py clientes/<cliente>/marca.json posts/<pasta>/slides.json posts/<pasta>/saida`.
 3. Capa de notícia: `scripts/capa_noticia.py`. Slide de vídeo: `scripts/video_slide.py` (use --crop para pegar só a filmagem original).

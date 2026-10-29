@@ -15,7 +15,7 @@ Você escreve o texto do post. Leia antes: `clientes/<cliente>/voz.md` (seções
 
 Saída: `posts/<pasta>/roteiro.md` (roteiro com tempos e contagem de palavras), `posts/<pasta>/legenda.txt` e `posts/<pasta>/grupo.md` (passo a passo pronto pra colar). Devolva só os caminhos, o gancho, a PALAVRA e a contagem de palavras.
 
-## Carrossel (exceção, no máximo 1 por semana)
+## Carrossel (1 por dia, em série)
 1. Análise curta da referência (5 linhas): gancho, estrutura, por que prende, como fecha.
 2. Roteiro modelado: mesma estrutura e sequência do original, no jeito de falar do cliente. Um slide por ideia. Cada slide tem `pill` (2 ou 3 palavras), `title` (uma frase, a palavra forte entre <r></r>), `sub` opcional e o conteúdo do meio (lista, comparação, print, número com fonte).
 3. Último slide: CTA com a PALAVRA ou pergunta, conforme o tipo do post.
