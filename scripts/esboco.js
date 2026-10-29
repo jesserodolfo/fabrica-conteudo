@@ -337,6 +337,33 @@ async function main(){
     txt(W/2,H-70,D.t||'roda sozinho',{size:42,a:'middle'}); if(D.sub)txt(W/2,H-24,D.sub,{size:30,a:'middle',wt:400,c:'#555'});
   };
 
+
+  /* capa PASTAS: antes (pasta torta, papeis voando) x depois (4 pastas alinhadas com ok) */
+  function pastaDesenho(x,y,w,h,c,fillc,rot){
+    const a=(rot||0)*Math.PI/180,co=Math.cos(a),si=Math.sin(a),cx=x+w/2,cy=y+h/2;
+    const R=(px,py)=>{const dx=px-cx,dy=py-cy;return [cx+dx*co-dy*si,cy+dx*si+dy*co]};
+    add(rc.polygon([R(x,y),R(x+w*0.38,y),R(x+w*0.46,y-h*0.2),R(x+w*0.08,y-h*0.2)],base({stroke:c,strokeWidth:4,roughness:1,fill:fillc,fillStyle:'solid'})));
+    add(rc.polygon([R(x,y),R(x+w,y),R(x+w,y+h),R(x,y+h)],base({stroke:c,strokeWidth:5,roughness:1.1,fill:fillc,fillStyle:'solid'})));}
+  T.pastas=()=>{
+    const g=36, cw=(W-g)/2, chf=H-4, G='#1f7a3a', cp=D.caps?66:0, ch=chf-cp;
+    box(0,2,cw,chf,{c:RED,sw:4.4,fill:'#ffb8b2',fo:{fillStyle:'solid'}});
+    box(cw+g,2,cw,chf,{c:G,sw:4.4,fill:'#c9f0cf',fo:{fillStyle:'solid'}});
+    txt(cw/2,50,'antes',{size:44,c:RED,a:'middle'}); txt(cw+g+cw/2,50,'depois',{size:44,c:G,a:'middle'});
+    /* esquerda: papeis soltos e pasta torta */
+    const L=cw/2; if(D.caps){const cs=fit(D.caps[0],cw-30,26,400);txt(cw/2,chf-34,D.caps[0],{size:cs,c:RED,a:'middle',wt:400});txt(cw+g+cw/2,chf-34,D.caps[1],{size:fit(D.caps[1],cw-30,26,400),c:G,a:'middle',wt:400});}
+    folha(L-cw*0.26,ch*0.36,cw*0.26,cw*0.32,-18,RED); folha(L+cw*0.28,ch*0.33,cw*0.26,cw*0.32,14,RED); folha(L+cw*0.02,ch*0.28,cw*0.26,cw*0.32,-4,RED);
+    pastaDesenho(L-cw*0.34,ch*0.48,cw*0.68,ch*0.19,RED,'#fff',-7);
+    folha(L+cw*0.20,ch*0.70,cw*0.22,cw*0.28,22,RED);
+    const tag=(s,cx,cy,rot)=>{const w=meas(s,30)+34;box(cx-w/2,cy-24,w,48,{c:RED,sw:3,fill:'#fff',fo:{fillStyle:'solid'}});txt(cx,cy+2,s,{size:30,c:RED,a:'middle',rot});};
+    tag('final final 2',L-cw*0.06,ch*0.575,-5); tag('contrato?',L-cw*0.16,ch*0.80,4); tag('nota fiscal',L+cw*0.14,ch*0.90,-4);
+    /* direita: 4 pastas alinhadas com ok */
+    const R0=cw+g, nomes=['Contratos','Notas fiscais','Planilhas','Imagens'], top=D.caps?84:100, st=(ch-top-30)/4, pw=cw-80, ph=Math.min(st-44,110);
+    nomes.forEach((n,i)=>{const y=top+st*i+34;
+      pastaDesenho(R0+40,y,pw,ph,G,'#fff',0);
+      ctr(R0+40,y,pw-70,ph,n,{size:36,pad:20,c:INK});
+      check(R0+40+pw-58,y+ph/2+2,G);});
+  };
+
   T.capa=()=>{
     const g=36, cw=(W-g)/2, ch=H-4, R=Math.min(cw*0.26,118);
     D.cards.forEach((k,i)=>{const x=i*(cw+g), c=i?'#1f7a3a':RED, cx=x+cw/2;
