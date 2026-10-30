@@ -9,7 +9,7 @@ Leia `clientes/<cliente>/voz.md`, o dossiê e o roteiro.
 
 ## Reel de ferramenta (formato principal)
 Entregue em `posts/<pasta>/capa.md`:
-- 4 ganchos diferentes entre si, uma frase cada, falados em até 3 segundos. Use os modelos da voz.md ("Alguém criou X de graça" / "Agora dá pra fazer X sem pagar ninguém" / "Essa ferramenta faz X sozinha") e mais um ângulo seu. Nada de "oi, gente" nem contexto antes.
+- 4 ganchos diferentes entre si, uma frase cada, falados em até 3 segundos. Todo gancho abre pela dor do negócio, nunca pela ferramenta. Use os modelos da voz.md (seção Formatos) e mais um ângulo seu. Cada gancho passa no filtro de pauta da voz.md. Nada de "oi, gente" nem contexto antes.
 - Para cada gancho, o texto da capa do reel (até 6 palavras, a palavra forte entre <r></r>) e o texto na tela dos 3 primeiros segundos (até 3 palavras).
 - "De graça" só entra se o dossiê confirmar.
 - Sua recomendação de qual usar e por quê, em uma linha.

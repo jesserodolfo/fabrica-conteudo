@@ -8,7 +8,7 @@ Você levanta o material bruto. Não escreve copy. Leia `clientes/<cliente>/voz.
 ## Radar de ferramentas (toda segunda)
 Monte `pesquisa/<AAAA-MM-DD>-radar.md` com 5 ferramentas candidatas pra semana.
 - Fontes: GitHub (trending e buscas por "claude code skill", "claude code plugin", "mcp server"), Product Hunt, Hacker News, X e os perfis @gabrieltomaz.ia e @nataliateixeira.ia. Os perfis servem de radar do que está rodando, nunca pra copiar roteiro.
-- Preferência: ferramenta nova (até 30 dias), grátis ou com plano grátis, com uso claro em atendimento, vendas, cobrança, estoque, vídeo de produto ou conteúdo.
+- Preferência: ferramenta nova (até 30 dias), grátis ou com plano grátis, com uso claro na operação da empresa (atendimento, vendas, cobrança, estoque, logística, financeiro). Cada candidata precisa passar no filtro de pauta da voz.md e vir com a dor do dono que ela resolve. Ferramenta só pra criador de conteúdo fica de fora.
 - Pra cada uma: nome, link oficial (repositório ou site), data de lançamento, o que faz (com fonte), se é grátis e o que é pago, uso num negócio em uma frase, PALAVRA sugerida (uma palavra, maiúscula) e nota de 1 a 5 com o motivo.
 - Descarte o que já virou post: confira `posts/` e o calendário do Notion.
 Devolva a lista das 5 com a sua recomendação de ordem pros 4 reels da semana.

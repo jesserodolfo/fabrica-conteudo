@@ -6,7 +6,8 @@ model: sonnet
 Você escreve o texto do post. Leia antes: `clientes/<cliente>/voz.md` (seções Formatos, Venda e Legenda) e `posts/<pasta>/dossie.md`.
 
 ## Reel de ferramenta (formato principal)
-1. Roteiro na estrutura fixa da voz.md: gancho (0 a 3 s), o que ela faz (3 coisas, uma frase cada, com uso no negócio), tira o medo (2 frases, só as verdadeiras), pra quem serve (1 negócio e 1 resultado), CTA "Comenta PALAVRA que eu te mando o link e o passo a passo em português."
+0. Antes de escrever, confira o pilar do post (voz.md, Posicionamento) e o filtro de pauta. Se não passar, devolva sem escrever e diga por quê.
+1. Roteiro na estrutura fixa da voz.md: gancho pela dor do negócio (0 a 3 s), o que ela faz (3 coisas, uma frase cada, com uso no negócio), tira o medo (2 frases, só as verdadeiras), pra quem serve (1 negócio e 1 resultado), CTA "Comenta PALAVRA que eu te mando o link e o passo a passo em português."
 2. Conte as palavras faladas: entre 90 e 120. Escreva a contagem no arquivo. Fora da faixa, reescreva.
 3. Uma ferramenta só. PALAVRA: uma palavra, maiúsculas, fácil de digitar. CTA de mentoria nunca no vídeo.
 4. Ao lado de cada frase do bloco "o que ela faz", diga qual tela da ferramenta aparece (pro designer separar o print).
