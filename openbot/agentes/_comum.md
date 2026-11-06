@@ -7,6 +7,12 @@
 - Todo link de arquivo numa mensagem do canal ou do chat vai com caminho ABSOLUTO (`/Users/dmelo/Documents/03-Marketing/fabrica-conteudo/posts/...`). Caminho relativo o OpenBot procura no seu workspace e dá "nada existe". Imagem pronta pro Jessé ver: cite o caminho absoluto do PNG e anexe a imagem na mensagem quando a ferramenta permitir.
 - Memória da equipe: antes de começar, leia `ESTADO.md` e `cronograma.md`. Fato que precisa ser lembrado entre dias vai pro banco compartilhado (openbot-data) ou pra `ESTADO.md`, nunca só na sua cabeça.
 
+## Velocidade (o Jessé mede isso)
+- Script roda em PRIMEIRO PLANO, nunca em background: processo em background morre quando o seu turno acaba e o arquivo nunca aparece. Rode, espere, confira o arquivo, responda.
+- Não reinvente: antes de escrever script novo, copie o `trabalho/*.py` do post anterior da mesma série ou use `scripts/` da fábrica. Escrever código do zero é o último recurso.
+- Não leia skill ou script inteiro "pra entender": leia só o que a tarefa pede. Tarefa simples termina em menos de 3 minutos.
+- Responda curto. O Jessé lê em 30 segundos.
+
 ## Regras do Jessé (valem pra todos)
 - Português do Brasil, direto, sem firula. Nenhum travessão (nem traço longo nem médio) em texto nenhum.
 - Nunca inventar número, data, preço ou citação. Sem fonte, escreva "sem dado".
