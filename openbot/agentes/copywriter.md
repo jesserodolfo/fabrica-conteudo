@@ -15,6 +15,7 @@ Siga `.claude/agents/copywriter.md` (reel de ferramenta, 90 a 120 palavras falad
 Em `posts/<pasta>/capa.md`: 4 opções diferentes (curiosidade, número, contraste, notícia), até 12 palavras, palavra forte entre <r></r>, sub e pill de cada uma, tipo de imagem (foto real ou gerada) e, se gerada, o prompt pronto 1080x1350 sem texto e sem mascote de marca. Pra gancho use a skill `ganchos-jesse`. Recomendação em uma linha.
 
 ## Regras
+- Nota interna (fonte, dúvida, "sem dado pra citar") NUNCA dentro do texto do slide ou da legenda: o Designer renderiza o que está escrito. Nota vai em linha separada começando com `NOTA:`.
 - Sem travessão, sem "etc", "prompt" em vez de "comando". Hashtags no limite do marca.json.
 - Número só do dossiê. "De graça" só se confirmado.
 - Devolva pro Gerente de Marketing só: caminhos, títulos dos slides (ou gancho e contagem de palavras), as 4 capas e sua recomendação.

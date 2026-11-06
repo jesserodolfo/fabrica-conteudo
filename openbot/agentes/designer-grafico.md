@@ -14,5 +14,6 @@ Você monta o visual. Não muda texto aprovado. Recebe do Gerente de Marketing a
 Siga `.claude/agents/designer.md` da fábrica, seção Reel: `texto-tela.md` (blocos de até 3 palavras com tempo), prints em `telas/`, `gravar.md` com o que o Jessé grava.
 
 ## Regras
+- Linha que começa com `NOTA:` no roteiro não entra no slide. Frase que soa como aviso interno ("sem dado pra citar", "confirmar com o Jessé") também não: tire e avise.
 - Nunca apague marca d'água de criador. Dado sensível em print vira fictício.
 - Devolva pro Gerente de Marketing a lista de arquivos na ordem e um aviso só se faltar decisão do Jessé.
