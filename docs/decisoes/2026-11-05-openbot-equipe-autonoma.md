@@ -143,3 +143,25 @@ Skills por uso (inventário: 55 de usuário + 39 sincronizadas + 155 agentes de 
 Regra: agente com mais de 5 skills vira genérico. Skill é procedimento com verificação. Agente é papel. Contexto é fato. Rotina é horário.
 
 Replicação pra empresário: modelo de 4 pastas (Contexto, Procedimentos, Papéis, Rotinas) a partir de `clientes/_modelo`. Quando virar produto, a frente migra do OpenBot pra n8n na VPS com API do Claude, pra não depender do Mac.
+
+## 10. Execução da fase 1 (2026-11-06, 10:41 a 10:47)
+
+Criados no OpenBot 0.60.0 (interface, via computer-use em segundo plano):
+
+| Agente | ID | Modelo |
+|---|---|---|
+| Gerente de Marketing (lead) | agent-739d4308-9533-4f6f-9de9-8ede937e00fe | claude-sonnet-5, médio |
+| Analista de Social Media | agent-8b3658f1-3fb6-4876-aa04-3d48624b97ee | claude-sonnet-5, alto |
+| Copywriter | agent-be6c0251-c46f-466d-80c6-714afb66bfb4 | claude-sonnet-5, alto |
+| Designer Gráfico | agent-bec70be8-e093-4e4a-888f-880f2b27d1e4 | claude-sonnet-5, alto |
+
+Canal "Conteúdo": d34a3652-3ea4-4713-bafa-4af8e78014d4, lead Gerente de Marketing, instruções do canal com as regras (GO, pasta, 2 em paralelo, fora de escopo).
+
+AGENTS.md e skills instalados por `openbot/instalar-agente.sh <cargo> <id>` (idempotente). Rodar de novo após editar um rascunho em `openbot/agentes/`.
+
+Aprendizados da interface:
+- O CLI 2.1.317 só lista Claude Sonnet 5 (não 5.5). Usado Sonnet 5.
+- No formulário de novo agente, Return dentro da busca de modelo cria o agente. Selecionar o modelo clicando no círculo da opção.
+- O primeiro membro marcado vira lead do canal; trocar depois nas configurações do canal (coroa).
+- Texto colado na caixa do canal por acessibilidade não ativa o botão Enviar; precisa de uma tecla real (espaço) e Enter.
+- Memória antes de começar: 1,2 GB livre e 4,4 GB de swap. A máquina já estava apertada antes do OpenBot.
