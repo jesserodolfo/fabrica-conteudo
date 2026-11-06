@@ -165,3 +165,23 @@ Aprendizados da interface:
 - O primeiro membro marcado vira lead do canal; trocar depois nas configurações do canal (coroa).
 - Texto colado na caixa do canal por acessibilidade não ativa o botão Enviar; precisa de uma tecla real (espaço) e Enter.
 - Memória antes de começar: 1,2 GB livre e 4,4 GB de swap. A máquina já estava apertada antes do OpenBot.
+
+## 11. Fase 2 de configuração (2026-11-06, 12:30 a 12:40)
+
+Feito:
+- Os 4 agentes em Claude Sonnet 5.5 (a lista de modelos atualizou depois da primeira criação) com esforço Médio.
+- `scripts/carrossel_serie.py`: o Designer preenche `trabalho/conteudo.json` e roda 1 comando (13 s). Modelo em `posts/2026-11-07-vendas/trabalho/conteudo.json`. Saída idêntica ao carrossel VENDAS aprovado. Designer apontado pra ele.
+- Rotina "Métricas e radar 06:00" no Analista (diária, fuso São Paulo, ativa). Teste manual criou `metricas_diarias` (13 linhas do Zernio) e `radar` no banco compartilhado.
+- Rotina "Relatório do dia 07:00" no Gerente (diária, posta no canal Conteúdo, termina com "Responda 1, 2 ou 3").
+- Chave do Zernio no `.env` da fábrica confirmada com acesso total (serve pra publicar na fase 2).
+- Zernio tem MCP hospedado: `https://mcp.zernio.com/mcp`, header `Authorization: Bearer <chave>`.
+
+Aprendizados da interface (rotinas):
+- Campo de horário ignora valor colado: usar setas do teclado com o campo focado, UMA seta por chamada (o app descarta repetições rápidas). 09→06 = 3 chamadas.
+- Nome e Instrução aceitam texto colado. Salvar fica no topo direito; "Testar" roda na hora e aparece no chat do agente como "Rotina acionada".
+- Não existe tela de MCP nas Configurações gerais, em Agents, Avançado ou no menu Mais. O caminho documentado é o agente propor `save_mcp_server` e o Jessé aprovar.
+
+Pendente:
+- Assistente de Social Media (publicador) ainda não criado. Quando criar: pedir a ele que cadastre o MCP do Zernio lendo a chave do `.env` (nunca colar a chave no chat) e aprovar o `save_mcp_server`.
+- Notion: token de integração ainda não existe; decidir se o OpenBot publica o presente ou se continua pelo Claude Code.
+- Desligar o launchd `com.fusiongrowth.relatorio-conteudo` depois de 3 dias limpos da rotina das 07:00.
