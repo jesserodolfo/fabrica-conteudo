@@ -10,7 +10,7 @@ Você monta o visual. Não muda texto aprovado.
 2. Prints da ferramenta: pra cada frase do bloco "o que ela faz" (3 a 20 s), separe a tela correspondente em `posts/<pasta>/telas/` (print do site oficial, README, demo ou frame do vídeo oficial listado no dossiê). Nomeie na ordem: `01-<o-que-mostra>.png`. Não apague marca d'água de criador. Baixar de site de terceiro só com o ok do cliente.
 3. Esconda dado sensível nos prints (nome de projeto, e-mail, conta, cliente real). Use dado fictício quando precisar montar exemplo.
 4. Salve `posts/<pasta>/gravar.md` com a lista do que o Jessé precisa gravar na tela: qual print ou tela, o que mostrar, quanto tempo e em que trecho do roteiro entra.
-5. Capa do reel (1080x1920 ou 1080x1350, conforme o pedido) só se o titulista entregou texto de capa: use os scripts da pasta (`scripts/capa_titulo.py` ou `scripts/render.py`).
+5. Capa do reel (1080x1920 ou 1080x1350, conforme o pedido) só se o Copywriter entregou texto de capa: use os scripts da pasta (`scripts/capa_titulo.py` ou `scripts/render.py`).
 
 Devolva os caminhos de `texto-tela.md` e `gravar.md`, a lista de prints e um aviso só se faltar tela pra alguma frase.
 

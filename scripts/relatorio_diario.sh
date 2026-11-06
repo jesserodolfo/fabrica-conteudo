@@ -1,5 +1,5 @@
 #!/bin/bash
-# Relatório diário do Time de Conteúdo. Roda a skill relatorio-diario com o Claude Code sem interface
+# Relatório diário do Analista (time do Instagram). Roda a skill relatorio-diario com o Claude Code sem interface
 # e manda o resultado no Telegram. Idempotente: rodar de novo no mesmo dia sobrescreve o relatório.
 # Uso: bash scripts/relatorio_diario.sh
 set -euo pipefail
@@ -32,14 +32,16 @@ PROMPT="Use a skill relatorio-diario. Data de hoje: $HOJE (fuso de Brasília). E
 # Timeout de 10 min (600 s) via perl, porque o macOS não tem o comando timeout.
 set +e
 perl -e 'alarm shift; exec @ARGV' 600 claude -p "$PROMPT" \
-  --output-format text \
+  --output-format text --model opus \
   --permission-mode dontAsk \
   --allowedTools "Skill" "Read" "Glob" "Grep" \
     "Edit(saidas/relatorios/*)" \
+    "Edit(pesquisa/analista-aprendizados.md)" "WebSearch" \
     "Bash(date:*)" "Bash(TZ=America/Sao_Paulo date:*)" \
     "mcp__claude_ai_Zenio__posts_list" \
     "mcp__claude_ai_Zenio__posts_list_failed" \
     "mcp__claude_ai_Zenio__analytics_get_daily_metrics" \
+    "mcp__claude_ai_Zenio__analytics_get_analytics" \
   < /dev/null > "$LOG" 2>&1
 STATUS=$?
 set -e

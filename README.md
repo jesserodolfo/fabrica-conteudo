@@ -25,15 +25,15 @@ Para outro cliente: `modele esse carrossel pro cliente padaria-x <link>`.
 ## Quem faz o quê
 | Agente | Modelo | Função |
 |---|---|---|
-| orquestrador (a conversa) | Opus 5.5 (`/model opus`) | decide, conversa, aprova |
-| pesquisador | Sonnet 5.5 | transcreve e checa fatos com fonte |
-| copywriter | Sonnet 5.5 | análise da copy, slides e legenda |
-| titulista | Sonnet 5.5 | 4 capas e prompt da imagem |
+| Gerente de Marketing (a conversa) | Opus 5.5 (`/model opus`) | decide, conversa, aprova |
+| analista | Opus 5.5 | radar, métricas, ideias, otimização, checa fatos com fonte |
+| copywriter | Opus 5.5 | roteiro, slides, 4 capas, prompt da imagem e legenda |
 | designer | Sonnet 5.5 | gera os arquivos e confere |
+| editor-de-video | Opus 5.5 | corta e monta o reel |
 | revisor | Sonnet 5.5 | controle de qualidade independente |
 | publicador | Haiku | Zernio e Notion |
 
-O modelo de cada agente fica na linha `model:` do arquivo em `.claude/agents/`. Conversa principal em Opus 5.5, publicador em Haiku, o resto em Sonnet 5.5. Para testar outro, troque ali (sonnet, opus, haiku).
+O modelo de cada agente fica na linha `model:` do arquivo em `.claude/agents/`. Quem pensa em Opus 5.5, quem executa script em Sonnet 5.5, publicador em Haiku. Para testar outro, troque ali (sonnet, opus, haiku).
 
 ## Novo cliente
 1. Copie `clientes/_modelo` para `clientes/<nome>`.

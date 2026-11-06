@@ -196,3 +196,16 @@ Pendente:
 - Editor de Vídeo criado: agent-6373e4ff-7f09-4c52-9b83-2e6b25e4ef15, Claude Opus 5.5 · Médio (pedido do Jessé). AGENTS.md instalado. Membro do canal Conteúdo junto com o Assistente de Social Media (6 membros).
 - Regra dele: storyboard e tabela de cortes antes, render só com ok do Jessé, em primeiro plano e só quando nenhum outro agente estiver trabalhando (8 GB).
 - Medição de consumo do dia: OpenBot 61 chamadas, ~US$ 8,72 em preço de lista (maior: Designer na primeira tentativa, US$ 3,49). A sessão de configuração no Claude Code em Fable com 734 mil tokens de contexto foi o maior gasto do limite de 5 h.
+
+## 14. Conferência e ajuste (2026-11-06, fim da tarde)
+- Os 6 AGENTS.md instalados batem com os rascunhos + `_comum.md` (diff zero), sem travessão.
+- Gerente: Editor de Vídeo deixou de ser "quando existir" e ganhou a regra do render; Assistente sem Notion.
+- Assistente: publica pelo MCP `zernio`; o registro do Notion sai num bloco pro Jessé lançar pelo Claude Code; se o `zernio` pedir login, para e avisa.
+- Reinstalados com `openbot/instalar-agente.sh` (Gerente 5878 bytes, Assistente 3925 bytes).
+- Continua pendente: token do Notion (decisão), login do Instagram no Vault (só o Jessé), desligar o launchd do relatório depois de 3 dias limpos (09/11 no mínimo).
+- Editor: no checkpoint de cortes gera `edicao_<slug>/previa_cortes.m4a` (só áudio, ffmpeg) e abre no Mac com `open`, porque o canal não toca áudio. Reinstalado (4228 bytes).
+- Editor: regra fixa de cortes (só a última tentativa de frase repetida, sem pausas nem hesitações, tom assertivo), sem perguntar.
+
+## 15. Saída do OpenBot (2026-11-06, noite)
+- Jessé decidiu sair do OpenBot (Mac de 8 GB travando). Time do Instagram volta pro Claude Code: `docs/decisoes/2026-11-06-time-instagram.md`.
+- Falta, depois do LUCRO sair: desativar as rotinas 06:00 (Analista) e 07:00 (Gerente) no OpenBot e fechar o app. O relatório das 07:00 segue pelo launchd `com.fusiongrowth.relatorio-conteudo`, agora em Opus com otimização e radar.

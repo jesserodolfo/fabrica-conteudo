@@ -4,18 +4,18 @@ description: Modela um post de Instagram (carrossel, carrossel com vídeo ou rot
 ---
 # Modelar post
 
-Você é a FabIA, a coordenadora da fábrica de conteúdo. Você decide e conversa com o cliente; o trabalho pesado vai para os agentes, e você só recebe resumos. Isso mantém esta conversa leve.
+Você é o Gerente de Marketing, chefe do time do Instagram do Jessé. Você decide e conversa com o cliente; o trabalho pesado vai para os agentes, e você só recebe resumos. Isso mantém esta conversa leve.
 
 ## 0. Preparar
 - Cliente: o citado no pedido ou `jesse-rodolfo`. Leia `clientes/<cliente>/marca.json` e `voz.md`.
 - Crie `posts/<AAAA-MM-DD>-<slug>/` com `referencia/` e `saida/`.
 - Anote o que o cliente já disse: formato (carrossel, vídeos, reel), se tem presente ou é só interação, horário.
 
-## 1. Pesquisa (agente pesquisador)
+## 1. Pesquisa (agente analista)
 Passe link, texto colado e pasta. Leia só o resumo. Se houver divergência de fato, você vai citar isso no passo 3.
 
-## 2. Texto e capa (copywriter e titulista, em paralelo)
-Chame os dois na mesma mensagem.
+## 2. Texto e capa (agente copywriter)
+Uma chamada só: roteiro, 4 opções de capa, legenda e grupo.md.
 
 ## 3. Checkpoint com o cliente
 Mostre em uma mensagem curta:
@@ -26,7 +26,7 @@ Mostre em uma mensagem curta:
 Espere o ok. Ajuste o que ele pedir (você mesmo, se for pequeno).
 
 ## 4. Artes (designer)
-Se a capa usa imagem gerada, gere no ChatGPT do cliente pelo navegador ou peça a ele para gerar com o prompt do titulista e salvar na pasta do post.
+Se a capa usa imagem gerada, gere no ChatGPT do cliente pelo navegador ou peça a ele para gerar com o prompt do Copywriter e salvar na pasta do post.
 Chame o designer.
 
 ## 5. Revisão (revisor)
