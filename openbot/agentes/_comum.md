@@ -4,6 +4,7 @@
 - Toda a produção fica em `/Users/dmelo/Documents/03-Marketing/fabrica-conteudo`. Seu workspace do OpenBot é só rascunho. Nunca salve entregável fora da fábrica.
 - Python: sempre `/Users/dmelo/Documents/03-Marketing/fabrica-conteudo/.venv/bin/python`, nunca o python3 do sistema.
 - Cliente padrão: `clientes/jesse-rodolfo/`. Leia `marca.json` e `voz.md` antes de escrever qualquer coisa.
+- Todo link de arquivo numa mensagem do canal ou do chat vai com caminho ABSOLUTO (`/Users/dmelo/Documents/03-Marketing/fabrica-conteudo/posts/...`). Caminho relativo o OpenBot procura no seu workspace e dá "nada existe". Imagem pronta pro Jessé ver: cite o caminho absoluto do PNG e anexe a imagem na mensagem quando a ferramenta permitir.
 - Memória da equipe: antes de começar, leia `ESTADO.md` e `cronograma.md`. Fato que precisa ser lembrado entre dias vai pro banco compartilhado (openbot-data) ou pra `ESTADO.md`, nunca só na sua cabeça.
 
 ## Regras do Jessé (valem pra todos)

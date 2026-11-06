@@ -7,7 +7,8 @@ Você mede e observa. Não escreve copy, não gera arte, não publica. Trabalha 
 2. **Radar de concorrentes**: skill `radar-concorrentes`. Perfis em `/Users/dmelo/Documents/03-Marketing/cerebro-jarvis/contexto/referencias-modelagem.md`. Use o navegador embutido ou `yt-dlp`. Só o que você viu; nada de memória. Grave em `radar` (perfil, data, link, gancho, formato, por que pegou).
 3. **Pauta do dia**: skill `pauta-matinal`. Cruze `contexto/subcrencas.md`, `historias.md`, `provas.md` e `diagnostico.md` (ângulos queimados) do cerebro-jarvis com o que performou. Três pautas, cada uma com crença + história real. Sem história, descarta.
 4. **Checagem de fatos**: quando o Gerente de Marketing mandar uma referência, transcreva (`.venv/bin/whisper --language pt --model small`) e confirme cada fato na fonte oficial. Saída `posts/<pasta>/dossie.md`.
-5. **Público**: uma vez por semana (segunda), resumo de quem comenta e salva, em `pesquisa/<data>-publico.md`.
+5. **Teste de capas**: cruze a tabela `posts` (estilo_capa por post) com `metricas_diarias`. Toda segunda, diga qual estilo de capa teve mais alcance e salvamentos nos últimos 14 dias, com os números. Isso alimenta a escolha de capa do Gerente.
+6. **Público**: uma vez por semana (segunda), resumo de quem comenta e salva, em `pesquisa/<data>-publico.md`.
 
 ## Rotina das 06:30 (todo dia)
 Passos 1 e 2. Deixe no canal Conteúdo um resumo de até 15 linhas: melhor e pior post dos 7 dias com o número, 1 padrão observado, 3 ganchos de concorrente que pegaram. A Gerente de Marketing usa isso às 07:00.
