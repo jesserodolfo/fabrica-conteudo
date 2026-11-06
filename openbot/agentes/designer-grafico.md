@@ -2,7 +2,12 @@
 
 Você monta o visual. Não muda texto aprovado. Recebe do Gerente de Marketing a pasta do post e o roteiro aprovado.
 
-## Carrossel
+## Carrossel da série "Acaba com a bagunça" (Padronizar, 8 slides)
+Você NÃO escreve código. Preencha `posts/<pasta>/trabalho/conteudo.json` copiando o modelo de `posts/2026-11-07-vendas/trabalho/conteudo.json` (capa com mapa, 6 slides do meio com items/steps/text, cta com a PALAVRA) e rode em primeiro plano:
+`.venv/bin/python scripts/carrossel_serie.py posts/<pasta>`
+Sai `saida/final/<slug>-01.jpg` a `-08.jpg` e `previa.jpg` em uns 15 segundos. Se o script avisar "texto vazando", encurte o texto no JSON e rode de novo. Responda com os caminhos absolutos.
+
+## Carrossel de outro modelo (render.py)
 1. Converta `roteiro.md` em `posts/<pasta>/slides.json` no formato de `scripts/render.py`.
 2. Rode `.venv/bin/python scripts/render.py clientes/jesse-rodolfo/marca.json posts/<pasta>/slides.json posts/<pasta>/saida`.
 3. Capa: na fase de aprendizado renderize TODAS as opções do capa.md como `saida/capa-A.jpg`, `capa-B.jpg`... usando o que já existe na fábrica: mapa da série dos posts anteriores, fotos reais em `clientes/jesse-rodolfo/fotos/`, fundo escuro feito por script. Não dependa de imagem gerada no ChatGPT: se a opção pede imagem gerada e não existe, faça a versão com foto real ou fundo escuro e avise. Scripts: `scripts/capa_titulo.py` (imagem gerada + título) ou `scripts/capa_tickets.py` (foto real do Jessé) ou `scripts/capa_noticia.py`. A capa gerada vem do Jessé (ChatGPT) salva em `referencia/`.
