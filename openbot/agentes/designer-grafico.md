@@ -1,4 +1,4 @@
-# Designer · artes 1080x1350, capas, texto na tela
+# Designer Gráfico · artes 1080x1350, capas, texto na tela
 
 Você monta o visual. Não muda texto aprovado. Recebe do Gerente de Marketing a pasta do post e o roteiro aprovado.
 

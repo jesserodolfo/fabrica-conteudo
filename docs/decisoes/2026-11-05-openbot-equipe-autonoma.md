@@ -1,7 +1,7 @@
 # Equipe autônoma de conteúdo no OpenBot (levantamento + plano)
 
 Data: 2026-11-05 (quarta). Início previsto: 2026-11-06 (sexta).
-Status: GO dado em 2026-11-06. Agentes sem nome próprio: só cargo (Gerente de Marketing, Analista de Instagram, Copywriter, Designer, Editor de Vídeo, Publicador).
+Status: GO dado em 2026-11-06. Agentes sem nome próprio: só cargo (Gerente de Marketing, Analista de Social Media, Copywriter, Designer, Editor de Vídeo, Publicador).
 
 ## 1. O que o OpenBot é de verdade (lido no site, no repositório e na sua máquina)
 
@@ -48,12 +48,12 @@ Status: GO dado em 2026-11-06. Agentes sem nome próprio: só cargo (Gerente de 
 | Agente OpenBot | Papel | Absorve da fábrica/Jarvis | Skills instaladas | Modelo |
 |---|---|---|---|---|
 | Gerente de Marketing (lead do canal) | Fala com você, roteia, revisa, guarda ESTADO.md | Gerente de Marketing + revisor | modelar-post, relatorio-diario, avaliador | Sonnet |
-| Analista de Instagram | Métricas Zernio, radar de concorrentes, perfil e público, pauta do dia | pesquisador + metricas-instagram + radar-concorrentes + pauta-matinal | pauta-matinal, radar-concorrentes, metricas-instagram | Sonnet |
+| Analista de Social Media | Métricas Zernio, radar de concorrentes, perfil e público, pauta do dia | pesquisador + metricas-instagram + radar-concorrentes + pauta-matinal | pauta-matinal, radar-concorrentes, metricas-instagram | Sonnet |
 | Copywriter | Roteiro de carrossel e reel, capa, gancho, legenda, grupo.md | copywriter + titulista + roteirista | ganchos-jesse (já user level) | Sonnet |
 | Designer | Gera os 1080x1350, capas, texto na tela | designer | carrossel (user level) + scripts da fábrica | Sonnet |
 | Editor de Vídeo | Escolhe formato e roda a skill de edição com o bruto | editor-de-video + diretor-de-cena | editar-reels, fio, jogo, palco, bastidor, minimal, broll, efeitos (user level) | Sonnet (fase 2) |
 | Publicador | Zernio, automação de palavra-chave, Notion, grupo.md | publicador | nenhuma (REST/MCP cadastrado no OpenBot) | Haiku (fase 2) |
-| Vendedor de Direct | Responde comentário e direct com a PALAVRA, qualifica pro diagnóstico | novo | consultor-de-ofertas, diagnostico-reverso | fase 3 |
+| SDR (pré-vendas) | Responde comentário e direct com a PALAVRA, qualifica pro diagnóstico | novo | consultor-de-ofertas, diagnostico-reverso | fase 3 |
 
 Fluxo de um dia (fase 1 estável):
 
@@ -61,9 +61,9 @@ Fluxo de um dia (fase 1 estável):
 06:30 rotina Analista  -> métricas 7d + radar -> tabela metricas_diarias e radar no banco compartilhado -> resumo no canal
 07:00 rotina Gerente de Marketing     -> lê o resumo + ESTADO.md + cronograma -> 3 pautas no canal (e no app do celular)
 você                   -> responde "1", "2" ou "3" (ou "1 em reel")
-Gerente de Marketing                  -> @Copywriter roteiro + capa -> checkpoint com você -> @Designer artes -> revisa com checklist -> mostra os arquivos
+Gerente de Marketing                  -> @Copywriter roteiro + capa -> checkpoint com você -> @Designer Gráfico artes -> revisa com checklist -> mostra os arquivos
 você                   -> "GO 18h"
-Gerente de Marketing                  -> @Publicador (fase 2) agenda, automação, Notion, devolve grupo.md -> atualiza ESTADO.md
+Gerente de Marketing                  -> @Assistente de Social Media (fase 2) agenda, automação, Notion, devolve grupo.md -> atualiza ESTADO.md
 ```
 
 Os rascunhos de `AGENTS.md` de cada agente estão em `openbot/agentes/*.md` nesta pasta. Amanhã é copiar pra raiz do workspace de cada um.
@@ -75,7 +75,7 @@ O OpenBot não tem arquivo de configuração de agente. Criar agente, canal e ro
 ### Dia 1 · sexta 06/11
 
 Manhã (2 h):
-1. Você cria no OpenBot os 4 agentes da fase 1 (Gerente de Marketing, Analista de Instagram, Copywriter, Designer) com uma linha de descrição cada e o modelo da tabela. Eu copio o `AGENTS.md` de `openbot/agentes/` pra `~/OpenBot/Agents/<id>/AGENTS.md`.
+1. Você cria no OpenBot os 4 agentes da fase 1 (Gerente de Marketing, Analista de Social Media, Copywriter, Designer) com uma linha de descrição cada e o modelo da tabela. Eu copio o `AGENTS.md` de `openbot/agentes/` pra `~/OpenBot/Agents/<id>/AGENTS.md`.
 2. Você cria o canal "Conteúdo" com Gerente de Marketing como lead e os outros 3 como membros.
 3. Registro das skills na biblioteca: peço ao Gerente de Marketing, no chat dela, "crie skill a partir da pasta X" apontando pras pastas da fábrica e do Jarvis (6 skills). Depois instalo em cada agente a que lhe cabe.
 4. Teste 1 (sem publicar): no canal, "@Gerente de Marketing monta o carrossel VENDAS (6 de 6) seguindo o calendário". Esperado: Gerente de Marketing chama Copywriter e Designer, PNGs aparecem em `posts/2026-11-07-vendas/saida/`, Gerente de Marketing pede seu ok. Nada no Zernio.
@@ -90,7 +90,7 @@ Tarde (1 h 30):
 9. Editor de Vídeo com um bruto que você já tem (reel LUCRO ou PASTAS): storyboard, escolha de formato, render. Medir RAM durante o render.
 
 ### Semana 2 (a partir de 10/11)
-10. Voz (pendência 7) e Vendedor de Direct (pendência 4).
+10. Voz (pendência 7) e SDR (pré-vendas) (pendência 4).
 11. Desligar o launchd do relatório quando a rotina do OpenBot tiver 3 dias limpos.
 
 ## 6. Verificação (como provo que está certo)
@@ -109,7 +109,7 @@ Tarde (1 h 30):
 1. Publicação: (a) cadastrar MCP do Zernio dentro do OpenBot (preciso da URL do MCP e da chave; conferir se o Zernio oferece), (b) reescrever o publicador pra REST do Zernio com `ZERNIO_API_KEY` de escrita, (c) manter publicação no Claude Code daqui e o OpenBot só produz. Minha recomendação: (c) na fase 1, (b) na fase 2.
 2. Notion (calendário): (a) MCP do Notion cadastrado no OpenBot com token de integração, (b) o Publicador só entrega e eu registro daqui. Recomendo (b) até a fase 2.
 3. Telegram do relatório: (a) abandonar, o app do OpenBot no celular já notifica, (b) manter e preencher o `.env`. Recomendo (a).
-4. Vendedor de Direct: Zernio tem inbox de comentários e menções (`comments_reply_to_inbox_post`, `mentions_reply_to_mention`), mas não direct. Pra direct: (a) só comentários via Zernio, (b) ManyChat/automação do Zernio já existente, (c) Instagram no navegador embutido do OpenBot (frágil, risco de bloqueio). Recomendo (a) + (b).
+4. SDR (pré-vendas): Zernio tem inbox de comentários e menções (`comments_reply_to_inbox_post`, `mentions_reply_to_mention`), mas não direct. Pra direct: (a) só comentários via Zernio, (b) ManyChat/automação do Zernio já existente, (c) Instagram no navegador embutido do OpenBot (frágil, risco de bloqueio). Recomendo (a) + (b).
 5. Agentes antigos Pessoal/Agenda/E-mail: (a) arquivar, (b) manter fora do canal.
 6. Modelo do Gerente de Marketing: (a) Sonnet (recomendo), (b) Opus como hoje.
 7. Voz clonada: (a) ElevenLabs API com a chave que já existe (custo por caractere, qualidade alta, zero RAM), (b) Chatterbox/F5 na VPS Hostinger (grátis, precisa conferir CPU/RAM da VPS), (c) adiar e seguir com você narrando. Recomendo (a) pra começar e (b) se o volume subir.
