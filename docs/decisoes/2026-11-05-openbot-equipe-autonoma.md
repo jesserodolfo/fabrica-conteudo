@@ -122,3 +122,24 @@ Tarde (1 h 30):
 - Rotina depende do Mac acordado às 06:30. Configurar energia pra não dormir ou aceitar que roda ao acordar.
 - Dois pipelines em paralelo (launchd + OpenBot) por alguns dias: podem gerar relatório duplicado. Aceitável até desligar o launchd.
 - Licença: uso pessoal R$ 0. Se a fábrica virar serviço cobrado de cliente (clientes/_modelo), entra licença Starter €10/mês.
+
+## 9. Arquitetura do cérebro e das skills (decidido 2026-11-06)
+
+Decisão: híbrido com um cérebro só. OpenBot é a frente (rotinas, canal, celular, demonstração). Claude Code é a oficina (criar skill, consertar script, publicar com conector). Os dois leem a mesma pasta da fábrica.
+
+Camadas do cérebro, da mais confiável pra menos:
+1. Identidade e fatos: `clientes/<cliente>/voz.md`, `marca.json`, `cerebro-jarvis/contexto/` (subcrenças, histórias, provas, ângulos queimados). Em git. Vence tudo.
+2. Procedimentos: skills (SKILL.md) e instruções de papel (AGENTS.md). Em git.
+3. Estado do dia: `ESTADO.md`, `cronograma.md`, `posts/*/estado.md`, tabelas do banco compartilhado do OpenBot. Os agentes mantêm.
+4. Memória automática do OpenBot (`remember`, revisão a cada 20 turnos): só aprendizado entre rotinas. Nunca fonte de verdade. Se contradisser o contexto, o contexto vence.
+
+Skills por uso (inventário: 55 de usuário + 39 sincronizadas + 155 agentes de plugin):
+- Pipeline diário (instaladas nos agentes): modelar-post, relatorio-diario, carrossel, ganchos-jesse, pauta-matinal, radar-concorrentes, metricas-instagram, avaliador, registrar-feedback.
+- Vídeo (só no Editor de Vídeo): editar-reels, fio, jogo, palco, bastidor, minimal, didatico, efeitos, broll, sala, diretor.
+- Conselhos de plugin (copy-master, hormozi, storytelling, brand-squad, advisory-board, traffic-masters): só no Claude Code, um por vez, pra decisão pontual. Resultado vira regra em `contexto/`. Nunca instalados em agente do OpenBot.
+- Operação (fim-de-sessao, check-painel, orq-tech, graphify, melavitta-brain, morning): só no Claude Code.
+- Fora do conteúdo (replica-*, cybersecurity, vercel, finance, founderos): em nenhum agente.
+
+Regra: agente com mais de 5 skills vira genérico. Skill é procedimento com verificação. Agente é papel. Contexto é fato. Rotina é horário.
+
+Replicação pra empresário: modelo de 4 pastas (Contexto, Procedimentos, Papéis, Rotinas) a partir de `clientes/_modelo`. Quando virar produto, a frente migra do OpenBot pra n8n na VPS com API do Claude, pra não depender do Mac.
