@@ -182,6 +182,12 @@ Aprendizados da interface (rotinas):
 - Não existe tela de MCP nas Configurações gerais, em Agents, Avançado ou no menu Mais. O caminho documentado é o agente propor `save_mcp_server` e o Jessé aprovar.
 
 Pendente:
-- Assistente de Social Media (publicador) ainda não criado. Quando criar: pedir a ele que cadastre o MCP do Zernio lendo a chave do `.env` (nunca colar a chave no chat) e aprovar o `save_mcp_server`.
+- Assistente de Social Media criado 12:40 e Zernio conectado 12:51 (ver seção 12).
 - Notion: token de integração ainda não existe; decidir se o OpenBot publica o presente ou se continua pelo Claude Code.
 - Desligar o launchd `com.fusiongrowth.relatorio-conteudo` depois de 3 dias limpos da rotina das 07:00.
+
+## 12. Zernio conectado no OpenBot (2026-11-06, 12:51)
+- Assistente de Social Media (agent-f0dcc66e-2370-4229-bc37-2124eea08d5b, Haiku 5.5) com servidor MCP `zernio` conectado por OAuth (Jessé fez o Sign in no card). 54 ferramentas, incluindo posts_create, posts_publish_now, media_generate_upload_link, comment_automations_* e queue_*.
+- Onde fica: menu Local › Configurações do servidor › MCP. O Vault (mesmo menu) é onde salvar o login do Instagram pro radar do Analista.
+- Fase 2 fechada. O que a equipe faz sozinha agora: métricas 06:00, relatório 07:00, carrossel da série por JSON + script, publicação pelo Assistente só com GO do Jessé no canal.
+- Ainda pelo Claude Code: registro no calendário do Notion (sem token de integração no OpenBot) e presente no Notion.
