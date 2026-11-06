@@ -191,3 +191,8 @@ Pendente:
 - Onde fica: menu Local › Configurações do servidor › MCP. O Vault (mesmo menu) é onde salvar o login do Instagram pro radar do Analista.
 - Fase 2 fechada. O que a equipe faz sozinha agora: métricas 06:00, relatório 07:00, carrossel da série por JSON + script, publicação pelo Assistente só com GO do Jessé no canal.
 - Ainda pelo Claude Code: registro no calendário do Notion (sem token de integração no OpenBot) e presente no Notion.
+
+## 13. Editor de Vídeo (2026-11-06, 17:33)
+- Editor de Vídeo criado: agent-6373e4ff-7f09-4c52-9b83-2e6b25e4ef15, Claude Opus 5.5 · Médio (pedido do Jessé). AGENTS.md instalado. Membro do canal Conteúdo junto com o Assistente de Social Media (6 membros).
+- Regra dele: storyboard e tabela de cortes antes, render só com ok do Jessé, em primeiro plano e só quando nenhum outro agente estiver trabalhando (8 GB).
+- Medição de consumo do dia: OpenBot 61 chamadas, ~US$ 8,72 em preço de lista (maior: Designer na primeira tentativa, US$ 3,49). A sessão de configuração no Claude Code em Fable com 734 mil tokens de contexto foi o maior gasto do limite de 5 h.
