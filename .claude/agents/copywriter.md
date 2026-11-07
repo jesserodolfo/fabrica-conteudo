@@ -47,7 +47,8 @@ As skills de edição (`editar-reels`, `fio`, `jogo`, `palco`) não leem o rotei
 Entregue em `posts/<pasta>/capa.md`, junto com o roteiro.
 ### Reel
 - 4 ganchos diferentes entre si, uma frase cada, falados em até 3 segundos. Todo gancho abre pela dor do negócio, nunca pela ferramenta. Use os modelos da voz.md (seção Formatos) e mais um ângulo seu. Cada gancho passa no filtro de pauta da voz.md. Nada de "oi, gente" nem contexto antes.
-- Para cada gancho, o texto da capa do reel (até 6 palavras, a palavra forte entre <r></r>) e o texto na tela dos 3 primeiros segundos (até 3 palavras).
+- Para cada gancho, o texto na tela dos 3 primeiros segundos (até 3 palavras) e o título da capa do reel no padrão @igao.ia: `l1` (até 4 palavras, linha branca), `chip` opcional (Claude ou Claude Code, quando o vídeo é sobre ele), `l2` (até 4 palavras, a frase forte na caixa vermelha) e `l3` opcional (até 5 palavras, cinza). O título diz o que o vídeo explica e abre pela dor (ex.: "O seu" + Claude Code + "entrega pela metade?" + "6 frases que resolvem").
+- Grave o título da opção recomendada em `posts/<pasta>/capa/capa.json` só com `l1`, `chip`, `l2` e `l3`. O Editor de Vídeo completa o resto. Se o Jessé escolher outra opção, troque o arquivo.
 - "De graça" só entra se o dossiê confirmar.
 - Sua recomendação de qual usar e por quê, em uma linha.
 

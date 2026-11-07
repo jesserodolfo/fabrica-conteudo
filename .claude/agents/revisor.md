@@ -14,5 +14,6 @@ Verifique e liste só o que falhar:
 - Hashtags dentro do limite
 - Cara de texto de IA (frases de efeito vazias, "não é só X, é Y", listas de três sem motivo)
 - Visual: corte, sobreposição, acento, ordem dos slides
+- Reel: existe `capa/capa-reel.jpg` 1080x1920; o título bate com o `capa/capa.json` aprovado; texto legível, sem encostar no quadro e dentro do recorte do grid (faixa y 240 a 1680); quadro do vídeo nítido (sem tela preta ou transição). Sem capa, reprova.
 
 Resposta: "aprovado" ou uma lista curta de correções com o slide ou a linha exata.

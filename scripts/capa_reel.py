@@ -5,7 +5,7 @@ e um quadro chamativo do próprio vídeo em destaque, inclinado, com brilho.
 Texto e quadro ficam dentro do recorte 3:4 do grid do perfil (y 240 a 1680).
 
 Uso: .venv/bin/python scripts/capa_reel.py capa.json saida.jpg
-capa.json: {"video": "posts/.../saida/X.mp4", "t": 6.0, "crop": [90,490,990,1310],
+capa.json (copywriter: l1, chip, l2, l3; editor: video, t, crop opcional): {"video": "posts/.../saida/X.mp4", "t": 6.0, "crop": [90,490,990,1310],
             "l1": "As 5 skills", "l2": "que eu mais uso", "l3": "no Claude Code", "chip": "Claude Code"}
 """
 import json, os, sys, base64, subprocess, tempfile
@@ -14,6 +14,9 @@ from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__)); F = lambda n: os.path.join(HERE, 'fonts', n)
 C = json.load(open(sys.argv[1])); out = os.path.abspath(sys.argv[2])
+falta = [k for k in ('video', 't', 'l1', 'l2') if C.get(k) in (None, '')]
+if falta: sys.exit(f'ERRO capa.json sem campo: {", ".join(falta)} (o copywriter manda l1/l2, o editor completa video e t)')
+if not os.path.exists(C['video']): sys.exit(f'ERRO vídeo não encontrado: {C["video"]}')
 tmp = tempfile.mkdtemp()
 fr = os.path.join(tmp, 'f.png')
 subprocess.run(['ffmpeg', '-v', 'error', '-y', '-ss', str(C['t']), '-i', C['video'], '-frames:v', '1', fr], check=True)
@@ -55,6 +58,10 @@ with sync_playwright() as p:
     try: b = p.chromium.launch(channel='chrome')
     except Exception: b = p.chromium.launch()
     pg = b.new_page(viewport={'width': 1080, 'height': 1920}); pg.goto('file://' + hp); pg.wait_for_timeout(600)
+    gap = pg.evaluate("()=>document.querySelector('.card').getBoundingClientRect().top - document.querySelector('.tit').getBoundingClientRect().bottom")
+    larg = pg.evaluate("()=>Math.max(...[...document.querySelectorAll('.l1,.l2w,.l3')].map(e=>e.getBoundingClientRect().width))")
     pg.screenshot(path=out, type='jpeg', quality=93); b.close()
 os.remove(hp)
+if gap < 30: sys.exit(f'ERRO título encosta no quadro (folga {gap:.0f}px, mínimo 30). Encurte l1/l2/l3 ou baixe tam1/tam2.')
+if larg > 960: sys.exit(f'ERRO título largo demais ({larg:.0f}px, máximo 960). Encurte ou baixe tam1/tam2.')
 print('ok', out)
