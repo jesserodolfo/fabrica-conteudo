@@ -4,41 +4,48 @@ Cole o prompt na sessão de cada projeto. Os dois usam o time do Instagram como 
 
 ---
 
-## Prompt 1 · Sessão do TikTok
+## Prompt 1 · Sessão do TikTok (pasta /Users/dmelo/Documents/03-Marketing/tiktok-video-ia)
 
 ```
-Modo Prumo. Quero o time do TikTok no mesmo formato do time do Instagram, sem quebrar nada que já está rodando aqui.
+Modo Prumo. Quero o time do TikTok no mesmo formato do time do Instagram da fábrica de conteúdo, sem quebrar nada que já roda aqui.
 
 MODELO (só leitura, não altere nada lá):
 - /Users/dmelo/Documents/03-Marketing/fabrica-conteudo/docs/decisoes/2026-11-06-time-instagram.md
 - /Users/dmelo/Documents/03-Marketing/fabrica-conteudo/CLAUDE.md (seções "Gerente de Marketing", "Time do Instagram", "Sequência do dia")
 - /Users/dmelo/Documents/03-Marketing/fabrica-conteudo/.claude/agents/ (analista, copywriter, designer, editor-de-video, revisor, publicador)
 - /Users/dmelo/Documents/03-Marketing/fabrica-conteudo/.claude/skills/relatorio-diario/SKILL.md
-- /Users/dmelo/Documents/03-Marketing/fabrica-conteudo/scripts/relatorio_diario.sh e ~/Library/LaunchAgents/com.fusiongrowth.relatorio-conteudo.plist
+- /Users/dmelo/Documents/03-Marketing/fabrica-conteudo/scripts/relatorio_diario.sh
 
-FORMATO A COPIAR:
-- Conversa principal = Gerente de TikTok (chefe do time). Organograma: Jessé (CEO) › Gerente › funções. Agentes sem nome próprio, só a função.
+O QUE JÁ EXISTE AQUI E FICA (não recriar):
+- As 9 regras e o pipeline do CLAUDE.md desta pasta: molde de 26 a 29 s, /prompt-flow, /flow, /validar, /partitura, /video, limite de 3 clipes e 30 créditos por clipe, zero ferramenta paga.
+- Postagem automática com aprovação no Telegram (docs/decisoes/2026-10-18-postagem-automatica.md) e as rotinas launchd com.jesseia.aprovar, com.jesseia.limpar e com.jesseia.vigia. Confira o que cada uma faz antes de propor qualquer coisa.
+- Posts agendados no Zernio.
+- saida/fila.csv como base das métricas (views 48 h, cliques na bio, vendas).
+- Projetos irmãos (../my-video, ../cortes, ../flow-queue): reaproveitar, não duplicar.
+
+FORMATO A COPIAR, ADAPTADO AO TIKTOK:
+- Conversa principal = Gerente de TikTok. Organograma: Jessé (CEO) › Gerente › funções. Agentes sem nome próprio, só a função.
 - Regra de modelo: quem pensa em Opus, quem executa script em Sonnet, quem publica em Haiku.
-- Analista com 4 blocos: (1) todo dia: métricas, concorrentes, notícias e 3 pautas; (2) otimização: confere se as pautas que ele mesmo deu deram resultado e corrige a própria pesquisa, anotando em um arquivo de aprendizados; (3) radar de ferramentas na segunda; (4) confirma fatos com fonte.
-- Relatório diário automático (skill + script + launchd) com: ontem, fila, métricas 7 dias, otimização, radar e 3 pautas. Manda no Telegram.
-- Sequência do dia numerada, igual à do Instagram, adaptada ao TikTok.
+- Funções mapeadas no pipeline que já existe: Analista (métricas, trends, produtos e prompts da biblioteca), Copywriter (prompt em inglês, legenda e comentario.txt), Editor de Vídeo (/flow, /partitura, /video), Revisor (/validar e checklist), Publicador (Zernio, só depois do ok no Telegram). Cada função diz quais comandos usa.
+- Analista com 4 blocos: (1) todo dia: métricas, concorrentes (Pereira, Kairo, Airon IA, Diego Kamhaji, só leitura), trends e 3 pautas (produto + formato + partitura); (2) otimização: confere se as pautas que ele mesmo deu deram resultado (views 48 h, cliques na bio, vendas por formato, produto, partitura e horário) e corrige a própria pesquisa, gravando em um arquivo de aprendizados; (3) radar na segunda; (4) confirma fatos com fonte.
+- Relatório diário: ver se o vigia já faz parte disso. Se fizer, melhorar o vigia em vez de criar rotina nova. Se não fizer, propor o relatório no Telegram fora das 07:00 (horário do relatório do Instagram).
 
 ETAPA 1 · AUDITORIA (antes de propor qualquer coisa):
-1. Liste o que já existe aqui: agentes, skills, scripts, launchd/cron, contas no Zernio, rotina diária de postagem, onde ficam as métricas.
-2. Tabela "Instagram x TikTok": cada peça do modelo e se ela existe aqui (✅ igual, 🟡 existe mas fraca, 🔴 não existe).
-3. Analista: puxe as métricas reais dos últimos 14 dias no Zernio (analytics do TikTok) e diga o que o Analista atual entrega, o que falta e o que melhorar. Ele mede por vídeo? Compara formato, produto e horário? Fecha o ciclo pauta › resultado › ajuste? Grava aprendizados?
-4. Liste o que está ATIVO e não pode parar (postagem automática, agendados, automações). Isso fica intocado.
+1. Liste agentes, skills, comandos, scripts e rotinas launchd daqui e o que cada um faz hoje.
+2. Tabela "Instagram x TikTok": cada peça do modelo e o estado aqui (✅ igual, 🟡 existe mas fraca, 🔴 não existe).
+3. Analista e métricas: o saida/fila.csv está preenchido? Quem preenche views 48 h, cliques e vendas: à mão ou de forma automática? Puxe os últimos 14 dias do Zernio (analytics do TikTok), compare com a fila e diga o que falta pra fechar o ciclo pauta › resultado › ajuste sem depender do Jessé.
+4. Liste o que está ATIVO e não pode parar.
 
 ETAPA 2 · ESPECIFICAÇÃO (sem código ainda):
-- Divisão em subagentes pra executar, arquivos novos e alterados, decisões e alternativas descartadas com o motivo.
+- Divisão em subagentes, arquivos novos e alterados, decisões e alternativas descartadas com o motivo.
 - Criar docs/decisoes/2026-11-07-time-tiktok.md antes de implementar.
 
 ETAPA 3 · VERIFICAÇÃO DEFINIDA:
-- Como vou provar: rodar o relatório manualmente uma vez e mostrar a saída real; checar que os agendados do Zernio continuam iguais (lista antes e depois); launchd carregado (launchctl list | grep ...).
+- Rodar o relatório (ou o vigia melhorado) manualmente uma vez e mostrar a saída real; agendados do Zernio iguais antes e depois; launchctl list mostra as rotinas com.jesseia.* e as novas carregadas.
 
 REGRAS:
-- Backup .bak-pre-time de todo arquivo antes de mexer. Nada é apagado; o que sair do time vai pra pasta bak.
-- Não mexer nos posts agendados nem na rotina que já posta.
+- Backup .bak-pre-time de todo arquivo antes de mexer. Nada é apagado.
+- Não gastar crédito do Flow nesta tarefa.
 - Português, sem travessão, report técnico curto.
 - Pare depois das etapas 1, 2 e 3 e espere meu GO.
 ```
@@ -97,5 +104,5 @@ REGRAS:
 Quando os dois times estiverem rodando, rode este na sessão do Instagram pra puxar de volta o que der certo:
 
 ```
-Leia docs/decisoes/2026-11-07-time-tiktok.md (pasta do TikTok) e /Users/dmelo/Documents/03-Marketing/Jesusepop/JesusEPop_producao/docs/decisoes/2026-11-07-time-youtube.md e diga o que o Analista de lá faz melhor que o daqui. Proponha a mudança no .claude/agents/analista.md com backup, sem aplicar.
+Leia /Users/dmelo/Documents/03-Marketing/tiktok-video-ia/docs/decisoes/2026-11-07-time-tiktok.md e /Users/dmelo/Documents/03-Marketing/Jesusepop/JesusEPop_producao/docs/decisoes/2026-11-07-time-youtube.md e diga o que o Analista de lá faz melhor que o daqui. Proponha a mudança no .claude/agents/analista.md com backup, sem aplicar.
 ```
