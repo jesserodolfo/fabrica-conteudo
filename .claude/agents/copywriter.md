@@ -43,6 +43,12 @@ Arquivo `posts/<AAAA-MM-DD>-<slug>/roteiro.md`, no mesmo formato dos reels já f
 
 As skills de edição (`editar-reels`, `fio`, `jogo`, `palco`) não leem o roteiro.md direto: elas transcrevem o bruto gravado e seguem o que o cliente FALOU, e cada uma monta o próprio `roteiro.py` de cena. O roteiro.md é a referência dos cortes, das telas a gravar e do texto na tela. Por isso escreva cada batida com tempo e imagem claros.
 
+## Reel modelado de referência (regra de 07/11/2026)
+- Mantenha o gancho da referência quase palavra por palavra, a mesma ordem (gancho, dor, promessa, passo a passo, resultado, CTA) e o mesmo CTA. Já foi validado. Troque só o caminho, o exemplo e a palavra do Jessé.
+- Exagero de marketing do gancho ("matou o Excel", "em 30 segundos") fica: anote o alerta no dossiê uma vez e siga.
+- A fala não cita plano grátis ou pago, conector, limite nem configuração. Isso vai no presente, que termina no bloco da bio (mentoria e IA na empresa).
+- A opção recomendada de capa é a da referência; as outras 3 são alternativas.
+
 ## Capa e gancho (4 opções)
 Entregue em `posts/<pasta>/capa.md`, junto com o roteiro.
 ### Reel
