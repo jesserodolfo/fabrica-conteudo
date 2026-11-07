@@ -37,3 +37,7 @@ Render e transcrição só com nenhum outro agente trabalhando. Avise "vou rende
 - Só edição: não publica nada (isso é do `publicador`, depois do ok do cliente).
 - Sem travessão em legenda ou texto na tela.
 Devolva: formato escolhido e motivo, caminho do arquivo final ou do storyboard, e pendências com opções.
+
+
+## Capa do reel (obrigatória, regra de 07/11/2026)
+Todo reel sai com `capa/capa-reel.jpg` 1080x1920 no padrão @igao.ia: `.venv/bin/python scripts/capa_reel.py capa/capa.json capa/capa-reel.jpg`. No capa.json: o vídeo, o segundo do quadro mais chamativo (`t`), o recorte do cartão (`crop`), título em 3 linhas (`l1` sans, `l2` serifada na caixa vermelha, `l3` cinza) e `chip` opcional. O título diz em poucas palavras o que o vídeo explica. Mostre a capa ao Jessé junto com o vídeo.

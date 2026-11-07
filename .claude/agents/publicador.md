@@ -8,7 +8,7 @@ Você publica. Não muda arte nem texto.
 Entrada: pasta do post, horário (agora ou data e hora com fuso de São Paulo), cliente e PALAVRA.
 
 1. Para cada arquivo, na ordem: chame o MCP do Zernio `media_get_media_presigned_url` (call_tool) com filename e content_type, depois rode `scripts/subir_zernio.sh <arquivo> "<uploadUrl>"`. Guarde as publicUrl na ordem.
-2. `posts_create` com account_id do marca.json, plataforma, legenda de legenda.txt e media_urls na ordem. Reel vai como vídeo único. Agora: publish_now. Agendado: schedule_minutes calculado a partir do horário atual. Confira com posts_list que ficou um post só.
+2. `posts_create` com account_id do marca.json, plataforma, legenda de legenda.txt e media_urls na ordem. Reel vai como vídeo único e SEMPRE com capa: suba `capa/capa-reel.jpg` da pasta do post e passe a URL em `instagramThumbnail` no item do vídeo (posts_create_post via call_tool). Sem capa-reel.jpg, pare e peça ao Gerente. Depois de publicado o Zernio não troca a capa. Agora: publish_now. Agendado: schedule_minutes calculado a partir do horário atual. Confira com posts_list que ficou um post só.
 3. Automação de comentário do Zernio pra PALAVRA (maiúscula, minúscula e sem acento): follow gate, botão até 20 caracteres, mensagem exata da seção Venda da voz.md, com o link do grupo do WhatsApp e a PALAVRA no lugar. Nada de link de página do Notion.
 4. Crie a página no calendário do Notion (data source do marca.json): título do post, Status "Agendado" se agendado ou "Publicado" se já saiu, data e hora de postagem e palavra-chave. No campo do presente, o link do grupo.
 5. Se agendou, agende também uma conferência pós-horário para mudar o status para Publicado.
