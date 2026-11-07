@@ -33,12 +33,12 @@ background-image:linear-gradient(rgba(255,255,255,.07) 2px,transparent 2px),line
 -webkit-mask-image:linear-gradient(#000,transparent 75%)}}
 .dots{{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.18) 1.5px,transparent 2px);background-size:140px 160px;opacity:.35;-webkit-mask-image:radial-gradient(ellipse at 50% 40%,transparent 30%,#000 80%)}}
 .tit{{position:absolute;left:60px;right:60px;top:300px;text-align:center}}
-.l1{{font-weight:800;font-size:76px;letter-spacing:-1.5px;line-height:1.1;display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap}}
+.l1{{font-weight:800;font-size:{C.get('tam1',76)}px;letter-spacing:-1.5px;line-height:1.1;display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap}}
 .chip{{display:inline-flex;align-items:center;gap:12px;background:#fff;color:#141414;font-size:46px;font-weight:800;padding:8px 22px 8px 16px;border-radius:14px;letter-spacing:-.5px}}
 .chip i{{width:26px;height:26px;border-radius:7px;background:#e5392f;display:inline-block}}
 .l2w{{margin-top:14px;display:inline-block;position:relative;padding:4px 30px 12px;border:3px solid #e5392f;background:rgba(229,57,47,.10)}}
 .l2w b{{position:absolute;width:16px;height:16px;background:#fff;border:3px solid #e5392f}}
-.l2{{font-family:Georgia,serif;font-style:italic;font-weight:400;font-size:104px;line-height:1.08;letter-spacing:-1px}}
+.l2{{font-family:Georgia,serif;font-style:italic;font-weight:400;font-size:{C.get('tam2',104)}px;line-height:1.08;letter-spacing:-1px}}
 .l3{{margin-top:20px;font-size:46px;font-weight:600;color:#a9a9b2}}
 .card{{position:absolute;left:50%;top:{C.get('topo_card', 820)}px;width:{W}px;height:{H}px;margin-left:-{W//2}px;border-radius:26px;overflow:hidden;
 transform:perspective(1600px) rotateX(14deg) rotateY(-6deg) rotateZ(1deg);
