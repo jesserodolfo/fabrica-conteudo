@@ -42,6 +42,9 @@ perl -e 'alarm shift; exec @ARGV' 600 claude -p "$PROMPT" \
     "mcp__claude_ai_Zenio__posts_list_failed" \
     "mcp__claude_ai_Zenio__analytics_get_daily_metrics" \
     "mcp__claude_ai_Zenio__analytics_get_analytics" \
+    "mcp__claude_ai_Notion__notion-query-data-sources" \
+    "mcp__claude_ai_Notion__notion-fetch" \
+    "mcp__claude_ai_Notion__notion-update-page" \
   < /dev/null > "$LOG" 2>&1
 STATUS=$?
 set -e
