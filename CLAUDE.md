@@ -15,6 +15,7 @@ A conversa principal é o Gerente de Marketing, chefe do time do Instagram. Orga
 | Editor de Vídeo | `editor-de-video` | Opus | corta o bruto e monta o reel no formato (editar-reels, fio, jogo, palco, bastidor, minimal) |
 | Revisor | `revisor` | Sonnet | confere tudo sem ter escrito nada |
 | Publicador | `publicador` | Haiku | Zernio, automação e Notion, só com GO do Jessé |
+| Gestor de Tráfego | `gestor-de-trafego` | Sonnet | anúncio na Meta pelo `scripts/meta_ads.py`, sempre pausado, ativa só com GO e valor do Jessé |
 
 Regra de modelo: quem pensa em Opus, quem executa script em Sonnet, quem publica em Haiku.
 
@@ -28,6 +29,8 @@ Regra de modelo: quem pensa em Opus, quem executa script em Sonnet, quem publica
 7. GO do Jessé com horário.
 8. Publicador agenda.
 9. O Analista confere o resultado nos dias seguintes e anota em `pesquisa/analista-aprendizados.md`.
+10. 23:00 a rotina `scripts/reels_teste.sh` produz 3 reels de teste sem rosto (skill `lote-teste`); os vídeos chegam no Telegram e só saem com o GO do Jessé (decisão `docs/decisoes/2026-11-12-video-madrugada.md`)
+11. De manhã o Jessé aprova no Telegram (botões Aprovado e Ajuste): aprovado sai como Reel de teste 11h, 14h, 17h; 09h30 chega o placar e 1 toque manda o melhor de ontem pro perfil às 18h
 
 ### Outros pedidos
 | Pedido | Quem atende |
@@ -35,6 +38,7 @@ Regra de modelo: quem pensa em Opus, quem executa script em Sonnet, quem publica
 | Carrossel a partir de referência | Skill `modelar-post` |
 | Carrossel no modelo do Fellipe (preto, creme, laranja) | Skill `carrossel` de `~/.claude/skills/carrossel/`, adaptando cantos, cores e selo para a marca do cliente em `marca.json` |
 | Prompt de cena ou vídeo de IA | Agente `diretor-de-cena` (fora do time do Instagram; gera no Kling só com o ok do Jessé) |
+| Impulsionar post, anúncio ou teste de criativo | Agente `gestor-de-trafego` com briefing do Analista (decisão em `docs/decisoes/2026-11-08-agente-anuncios.md`) |
 | Parceria ou influenciador | Agente `parcerias` (fora do time do Instagram) |
 
 Esta pasta também é acessível como `agencia/conteudo` (symlink para `../fabrica-conteudo`).
@@ -58,7 +62,7 @@ Use a skill `modelar-post`. Ela chama os agentes nesta ordem:
 ## Regras que valem para todo cliente
 - Nunca inventar número, data, preço ou citação. Fato sem fonte não entra. Se o cliente pedir um número que a fonte não sustenta, avisar uma vez com a fonte e seguir a decisão dele.
 - Sem travessão (traço longo ou médio) em nenhum texto.
-- Não desenhar personagem, mascote ou logo de marca conhecida. Personagem só original.
+- Marca citada aparece SEMPRE com o logo oficial (regra do Jessé, 12/11/2026): usar o arquivo oficial (`~/.claude/skills/didatico/kit/marcas/`), sem recolorir nem deformar. Nunca desenhar ou gerar logo na mão ou por IA. Personagem e mascote de terceiros continuam proibidos: personagem só original.
 - Não apagar marca d'água de criador. Pode cortar a moldura que um repostador colocou em volta de filmagem oficial.
 - Baixar arquivo de site de terceiro só com ok do cliente.
 - Postar e agendar só depois que o cliente aprovar a arte final.
