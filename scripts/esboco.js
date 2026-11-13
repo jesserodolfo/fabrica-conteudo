@@ -376,6 +376,41 @@ async function main(){
       txt(cx,y2+66+78,k.l2,{size:fit(k.l2,cw-40,38,700),c:c,a:'middle',wt:400});});
   };
 
+  /* capa ATENDIMENTO: balões tortos (cada um responde de um jeito) -> manual arrumado com check */
+  function balao(cx,cy,w,h,rot,c,s,fillc){const g=document.createElementNS(NS,'g');g.setAttribute('transform',`rotate(${rot} ${cx} ${cy})`);const keep=layer;svg.appendChild(g);layer=g;
+    box(cx-w/2,cy-h/2,w,h,{c:c,sw:4,fill:fillc||'#fff',fo:{fillStyle:'solid'}});
+    add(rc.polygon([[cx-w*0.30,cy+h/2-2],[cx-w*0.40,cy+h/2+26],[cx-w*0.14,cy+h/2-2]],base({stroke:c,strokeWidth:4,roughness:1,fill:fillc||'#fff',fillStyle:'solid'})));
+    ctr(cx-w/2,cy-h/2,w,h,s,{c:c,size:36,pad:30});layer=keep;}
+  T.atendimento=()=>{
+    const g=36, cw=(W-g)/2, ch=H-4, G='#1f7a3a';
+    box(0,2,cw,ch,{c:RED,sw:4.4,fill:'#ffb8b2',fo:{fillStyle:'solid'}});
+    box(cw+g,2,cw,ch,{c:G,sw:4.4,fill:'#c9f0cf',fo:{fillStyle:'solid'}});
+    txt(cw/2,50,'antes',{size:44,c:RED,a:'middle'}); txt(cw+g+cw/2,50,'depois',{size:44,c:G,a:'middle'});
+    const L=cw/2, bw=cw*0.66, bh=Math.min(88,ch*0.15);
+    balao(L-cw*0.08,ch*0.30,bw,bh,-6,RED,'Oi, tudo bem?');
+    balao(L+cw*0.10,ch*0.50,bw,bh,5,RED,'Depende...');
+    balao(L-cw*0.06,ch*0.70,bw,bh,-3,RED,'Não sei.');
+    xmark(L+cw*0.34,ch*0.19,16,RED,6);
+    const R0=cw+g, mx=R0+cw/2, pw=cw*0.62, ph=ch*0.60, px=mx-pw/2, py=ch*0.16;
+    box(px,py,pw,ph,{c:G,sw:5,fill:'#fff',fo:{fillStyle:'solid'}});
+    box(px-8,py+ph*0.1,8,ph*0.8,{c:G,sw:4});
+    [0.20,0.34,0.48,0.62].forEach((k,i)=>line(px+pw*0.14,py+ph*k,px+pw*(i%2?0.74:0.86),py+ph*k+1,{c:G,sw:4,r:0.8}));
+    check(px+pw*0.28,py+ph*0.82,G);
+    txt(mx,py+ph+54,'atendimento.md',{size:fit('atendimento.md',cw-40,38,700),c:G,a:'middle'});
+  };
+
+  /* CTA ATENDE: comentário digitado -> direct com o prompt */
+  T.atende=()=>{
+    const mid=W/2, ch=Math.min(250,H*0.42);
+    box(0,0,W,ch,{sw:3.8});
+    ell(66,ch*0.32,66,66,{c:'#777',fill:'#ccc',fo:{hachureGap:9,fillWeight:1.4},sw:3});
+    txt(122,ch*0.30,D.name,{size:34}); txt(122+meas(D.name,34)+16,ch*0.30+2,D.when,{size:28,wt:400,c:GR});
+    const sz=62; txt(28,ch*0.72,D.kw,{size:sz,c:RED}); const cx=28+meas(D.kw,sz,700)+12; line(cx,ch*0.72-30,cx+2,ch*0.72+30,{c:INK,sw:4,r:0.8});
+    const bh=Math.min(210,H-ch-110), by=ch+90+(H-ch-110-bh)/2; arrow(mid,ch+8,mid+10,by-6,{c:RED,bend:0.12,hl:22,sw:4});
+    box(60,by,W-60,bh,{c:INK,sw:3.8,fill:HIL,fo:{hachureGap:15,fillWeight:1.5}});
+    txt(60+(W-60)/2,by+bh/2+2,D.dm,{size:fit(D.dm,W-60-50,40,700),a:'middle'});
+  };
+
   (T[D.type]||(()=>{}))();
   window.__ready=true;
 }

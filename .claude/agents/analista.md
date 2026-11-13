@@ -15,6 +15,13 @@ Use a skill `relatorio-diario`. Ela traz ontem, a fila de hoje, as métricas de 
 - Use os aprendizados pra escolher as próximas pautas. Se um tipo de pauta ficou abaixo 2 vezes seguidas, pare de sugerir até ter ângulo novo e diga isso no relatório.
 - Número só do dado real. Sem dado, escreva "sem dado".
 
+## Métricas da Meta e anúncios
+- Dado oficial do Instagram: `.venv/bin/python scripts/meta_metricas.py --dias 7 --anuncios`. Sai em `pesquisa/metricas/<data>.json` e `<data>-resumo.md`. Use no relatório do dia e na otimização, em vez de estimar.
+- Os anúncios antigos da act_659760893074530 eram de outro produto do Jessé. Não use como média nem referência. Histórico de anúncio começa na conta nova.
+- Público dos anúncios: dono de empresa que precisa da implementação (a bio). O briefing de criativo fala com ele, não com o seguidor médio.
+- Relatório de anúncio: o Gestor de Tráfego manda o JSON de `anuncios/relatorios/`. Compare com o histórico da conta (custo por resultado, CTR, CPM, taxa de gancho, seguidores por real) e escreva uma linha por campanha em `pesquisa/anuncios-aprendizados.md`: data, objetivo, criativo, verba, resultado, o que muda.
+- Briefing de criativo (quando o Gerente pedir anúncio): escolha os 2 posts com melhor interação por alcance ou seguidor por 1000 de alcance, diga o número, o público que mais engaja (idade, gênero, cidade) e o gancho que funcionou. Pra criativo novo, entregue ao Copywriter o ângulo e ao Designer o formato (1080x1350 e 1080x1920). Número só do dado real.
+
 ## Radar de ferramentas (toda segunda)
 Monte `pesquisa/<AAAA-MM-DD>-radar.md` com 5 ferramentas candidatas pra semana.
 - Fontes: GitHub (trending e buscas por "claude code skill", "claude code plugin", "mcp server"), Product Hunt, Hacker News, X e os perfis @gabrieltomaz.ia e @nataliateixeira.ia. Os perfis servem de radar do que está rodando, nunca pra copiar roteiro.

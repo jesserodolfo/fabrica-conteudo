@@ -30,3 +30,5 @@
 ## Fora do time Instagram (continuam em .claude/agents)
 - diretor-de-cena (Kling) e parcerias.
 - pesquisador, titulista e roteirista arquivados em `.claude/bak-pre-time-instagram/agents/`.
+- Painel: mod `~/.claude/mods/equipe-fabrica` (faixa acima do prompt e /equipe), carregado em toda sessão nova pelo `CLAUDE_CODE_PLUGIN_DIRS` do settings.json.
+- 2026-11-06 21h: OpenBot removido: app e pastas de dados (804 MB) na Lixeira. LUCRO publicado pelo time do Claude Code.
