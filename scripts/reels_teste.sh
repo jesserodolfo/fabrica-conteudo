@@ -216,6 +216,9 @@ fi
 
 # (e) Claude Code sem interface, sem ferramenta de internet e sem MCP. Timeout via perl (o macOS não tem timeout).
 PROMPT="Use a skill lote-teste. data=$ALVO fila=$FILA. Produza até 3 reels de teste, um por vez, e grave o manifesto saidas/lote-teste/$ALVO.json depois de cada vídeo. Rotina noturna sem ninguém pra responder: não pergunte nada, não publique nada, não use a internet."
+# Sem teto de espera por agente em segundo plano (o padrão de 10 min derrubou o Editor em 16/11/2026).
+# O teto de verdade continua sendo LIMITE_S. Decisão: docs/decisoes/2026-11-17-lote-teste-modelo-novo.md
+export CLAUDE_CODE_PRINT_BG_WAIT_CEILING_MS=0
 source "$DIR/scripts/claude_com_reserva.sh"   # limite do Fable: repete com o Opus 5.5
 claude_com_reserva "$LIMITE_S" "$LOG" "$MODELO" "$PROMPT" \
   --permission-mode dontAsk --strict-mcp-config \

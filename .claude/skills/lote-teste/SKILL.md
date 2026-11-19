@@ -21,15 +21,17 @@ Decisão: `docs/decisoes/2026-11-12-video-madrugada.md` (complementa `docs/decis
 ```
 ## [ ] SLUG · PALAVRA
 - Referência: ...
-- Gancho: ...
+- Gancho: ... (o problema do dono, sem Claude nem IA)
+- Por que volta: ... (o processo que falta)
+- Saída: ... ("Faz assim: abre o Claude e ...")
 - Promessa: ...
-- Passos: ...
+- Passos: ... (só na tela, não na fala)
 - Fatos conferidos: ... (cada um com fonte)
 - Marcas que aparecem: ...
 - Entrega na DM: ...
 ```
 
-- O bloco pode trazer também "Aviso de cuidado" (entra na fala como o detalhe antes do CTA) e "Fora da fala" (lista do que é proibido dizer ou mostrar). Os dois valem como regra.
+- O bloco pode trazer também "Aviso de cuidado" (entra na legenda e na tela, não na fala; nunca "mas tem um detalhe") e "Fora da fala" (lista do que é proibido dizer ou mostrar). Os dois valem como regra.
 
 - Pegue as 3 primeiras pautas com `## [ ]`, na ordem do arquivo. Bloco com `[x]` (feito) ou `[!]` (falhou e precisa do Analista) fica de fora. Menos de 3 na fila: faça as que houver e registre no manifesto quantas faltaram (campo `motivo` do último item ou item extra com `status: "falhou"`, `slug: "fila"` e `motivo: "fila com N pautas"`). Fila vazia ou ausente: grave o manifesto só com esse item e termine.
 - SLUG em minúsculas, sem acento e com hífen. PALAVRA em maiúsculas, uma palavra só.
@@ -51,19 +53,21 @@ Se o pedido disser "modo conferência": só leia a fila e responda a lista das p
 
 ## Antes de começar
 1. Leia `clientes/jesse-rodolfo/marca.json` (limite de hashtags) e `clientes/jesse-rodolfo/voz.md`.
-2. Olhe os dois exemplos do padrão: `posts/2026-11-12-teste-planilha-caixa/` (gravacao.md, voz.json, legenda.txt, dm.txt, automacao.md, capa/capa.json, `trabalho_v2/gera.py`) e `posts/2026-11-12-reel-diagnostico/trabalho_v7/gera.py`. Só leitura.
+2. Olhe os dois exemplos do padrão: `posts/2026-11-12-teste-planilha-caixa/` (legenda.txt, dm.txt, automacao.md, capa/capa.json, `trabalho_v2/gera.py`) e `posts/2026-11-12-reel-diagnostico/trabalho_v7/gera.py`. Para a FALA e a voz, o exemplo é `posts/2026-11-16-reel-claude/` (gravacao.md e voz.json do reel CAUSA, molde aprovado pelo Jessé em 16/11/2026); a fala dos exemplos de 12/11 é do modelo antigo e não serve de molde. Só leitura.
 3. Anote a hora de início (`date +%s`). Não comece um vídeo novo se já passaram 4 h 15 desde o início: registre os que faltaram como `falhou`, motivo "sem tempo nesta noite", e deixe a pauta `[ ]` na fila.
 4. Se `saidas/lote-teste/<data>.json` já existe (rotina rodou e morreu), leia: vídeo com `status: "pronto"` não se refaz. Preserve o campo `enviado` e todo campo que você não conhece de cada item (`message_id`, `aprovado`, `agendado`, `horario`, `post_id` e outros são do shell e do ouvinte do Telegram).
 
 ## Por vídeo (UM POR VEZ, nesta ordem)
+Todo agente (Copywriter, Editor, Revisor) roda em PRIMEIRO PLANO: chame e espere a resposta na mesma chamada, nunca `run_in_background`. Nunca encerre o turno com agente ou comando ainda rodando, e nunca grave manifesto com motivo "em andamento": ou a etapa terminou, ou é `falhou` com o motivo real. Em 16/11/2026 a rotina encerrou com o Editor em segundo plano e o lote inteiro se perdeu.
 Pasta: `posts/<data>-teste-<slug>/`. Se a pasta já existe com `saida/teste-<slug>_v1.mp4`, não refaça: só confira e escreva o manifesto.
 
 Primeiro grave `posts/<pasta>/dossie.md` com a cópia fiel do bloco da pauta (é a fonte dos fatos pro Copywriter e pro Revisor).
 
 ### a) Copywriter (agente `copywriter`)
 Passe a pasta, o `dossie.md`, os dois exemplos e estas regras. Ele escreve:
-- `gravacao.md`: cabeçalho como o do exemplo (tipo Reel de Teste, formato DIDÁTICO sem rosto, voz clonada F, fonte, PALAVRA, entrega) e a fala numerada em texto corrido, de 30 a 45 s (75 a 115 palavras). Gancho pela dor do negócio; "Agora o Claude faz isso pra você!" quando couber; mantém gancho, ordem e CTA da referência da pauta; poucos números; fecha com "Comenta PALAVRA, que eu te mando o prompt pronto!". Nunca "Olha isso!", nunca apresentar o Claude, nunca plano grátis ou pago, nunca "comando" (é "prompt").
-- `voz.json`: `{"blocos":[{"texto":"...","tom":"...","ritmo":1.15}, ...]}`, um bloco por frase da fala, igual ao exemplo. `tom` descreve a entonação em português; `ritmo` entre 1.10 e 1.20. Evitar "aí a IA" e encontros de vogal que a voz embola; a PALAVRA no bloco do CTA em minúsculas (a voz lê melhor).
+- `gravacao.md`: cabeçalho como o do exemplo (tipo Reel de Teste, formato DIDÁTICO sem rosto, voz clonada F, fonte, PALAVRA, entrega) e a fala numerada em texto corrido, de 30 a 45 s (75 a 115 palavras). Ordem fixa (decisão `docs/decisoes/2026-11-17-lote-teste-modelo-novo.md`, molde do reel CAUSA; substitui a ordem de 14/11): (1) o problema do dia a dia do dono, em cena, em palavra simples, sem sigla nem nome de método; o gancho não cita o Claude nem IA (campo "Gancho" da pauta); (2) por que o problema volta, ou seja, o processo que falta, em 1 a 2 frases (campo "Por que volta"); (3) a saída em 1 a 2 frases começando por "Faz assim: abre o Claude e..." (campo "Saída"), sem narrar clique, menu ou botão: o caminho dos cliques aparece só na tela; (4) "Primeiro o processo. Depois a IA." como frase própria; (5) "Comenta PALAVRA que eu te mando o prompt pronto." Frases corridas, de conversa, como quem conta pra um amigo; nada de lista telegráfica nem "primeiro, depois, por fim" de tutorial. Poucos números. Pauta sem os campos "Por que volta" e "Saída": escreva os dois a partir da "Promessa", sem fato novo. Nunca "Olha isso!", nunca "agora o Claude faz isso pra você" na abertura, nunca apresentar o Claude, nunca "mas tem um detalhe", nunca plano grátis ou pago, nunca "comando" (é "prompt").
+- `voz.json`: `{"blocos":[{"texto":"...","tom":"...","ritmo":1.10}, ...]}`, um bloco por trecho da fala (5 a 7 blocos), igual ao exemplo do CAUSA. `tom` descreve a emoção de cada bloco em português, sempre em tom de conversa (o Jessé reprovou voz "robótica, sem emoção" em 16/11/2026); `ritmo` 1.10 em todos os blocos. Evitar "aí a IA" e encontros de vogal que a voz embola; a PALAVRA no bloco do CTA em minúsculas (a voz lê melhor).
+- Abertura numa fala só (regra do Jessé, 13/11/2026, depois do RESPOSTA sair engasgado): o gancho e a frase do processo que falta ficam no MESMO bloco do `voz.json`. A saída vem em bloco próprio, começando por "Faz assim:". "Primeiro o processo. Depois a IA." fica em bloco separado do CTA. Nunca começar bloco com "o Claude" nem com "E". Depois de gerar, transcreva cada bloco: palavra faltando, palavra a mais ou silêncio de mais de 0,5 s no meio da frase = apagar o `<i>_bruto.wav` e gerar de novo (até 3 vezes). Nunca consertar emendando pedaços de áudio.
 - `legenda.txt`: primeira linha que segura, 3 a 4 linhas, "Comenta PALAVRA que eu te mando o prompt pronto." e hashtags até o `max_hashtags` do `marca.json`.
 - `dm.txt`: entrega só o prompt completo, pronto pra colar (campos entre colchetes), com uma linha antes e uma depois. Nada de planilha, checklist ou link.
 - `capa/capa.json`: só `l1`, `chip` (opcional), `l2`, `l3`. Abre pela dor.
@@ -78,6 +82,7 @@ Saída `posts/<pasta>/voz.mp3`. O script é idempotente (bloco já gerado não g
 Confira a duração com `ffprobe`: entre 28 e 48 s. Fora disso: `falhou`, motivo "voz com N s".
 
 ### c) Editor de Vídeo (agente `editor-de-video`)
+A fala não narra clique: quem mostra o caminho é a tela, com os "Passos" da pauta, enquanto a voz conta o problema e a saída. A abertura (0 a 3 s) mostra o PROBLEMA em cena, sem logo do Claude; o Claude só aparece quando a fala chega no "Faz assim".
 Diga ao agente, com todas as letras: rotina noturna, sem checkpoint de GO, sem storyboard pra aprovar, sem prévia de cortes, formato já decidido (`didatico` sem rosto, `"regua": "igao"`), a voz já vem no ritmo certo (NÃO acelerar de novo, só `loudnorm`), sem internet. Ele faz, na pasta `posts/<pasta>/trabalho/`:
 1. `base.m4a` a partir do `voz.mp3` (skill didatico, "Áudio e legenda", só voz: ffmpeg com `loudnorm`, AAC 48 kHz mono) e a transcrição com tempo `base_tr.json` (`~/.claude/skills/editar-reels/kit/transcreve.py`), corrigida pelo texto do `voz.json`.
 2. `gera.py` no molde dos dois exemplos, com as peças do kit (`~/.claude/skills/didatico/kit/pecas.py`, `pecas_claude.py`, `marcas.py`): gancho 3D de 3 s com 3 eventos, cena nova a cada 3 a 5 s, micro-evento a cada 1 s, produto recriado em código com dado plausível e rótulo "exemplo", CTA de comentário com a PALAVRA, logo oficial de cada marca do campo "Marcas que aparecem" (`marcas.icone_app`, `marcas.selo`), nunca desenhado, recolorido ou deformado, sem emoji.

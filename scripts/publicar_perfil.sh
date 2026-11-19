@@ -18,6 +18,10 @@ if [ "$(campo perfil_agendado)" = "true" ]; then
 fi
 
 CAND="$("$PY" scripts/lote_comum.py horarios "$CHAVE" perfil)"
+# PERFIL_HORARIOS="AAAA-MM-DDTHH:MM AAAA-MM-DDTHH:MM" troca os candidatos (pedido do Jessé por outro horário que não 18h).
+if [ -n "${PERFIL_HORARIOS:-}" ]; then
+  CAND="$(for h in $PERFIL_HORARIOS; do printf '%s\t%sh%s\n' "$h" "$(printf '%s' "$h" | cut -c12-13)" "$(printf '%s' "$h" | cut -c15-16)"; done)"
+fi
 H1_ISO="$(printf '%s\n' "$CAND" | head -1 | cut -f1)"; H1_ROT="$(printf '%s\n' "$CAND" | head -1 | cut -f2)"
 LISTA_H="$(printf '%s\n' "$CAND" | cut -f1 | tr '\n' ' ')"
 TESTE_EM="$(campo publicado_em)"
