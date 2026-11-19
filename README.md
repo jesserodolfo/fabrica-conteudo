@@ -1,42 +1,52 @@
-# Fábrica de conteúdo (Claude Code)
+# Content Factory: a team of AI agents that makes my Instagram posts
 
-Do link de referência até o post publicado, com um agente por função.
+Content Factory turns a reference (an Instagram post, a reel or a news link) into a finished post in my own voice and brand, and publishes it. It runs inside Claude Code on my Mac, with one agent per job, the same way a small marketing team works.
 
-## Instalar (uma vez, no Mac)
-Nesta pasta, rode `bash instalar.sh` (coloca os agentes e a skill em .claude/).
-```
+I use it every day for my personal Instagram (carousels, reels, stories) and I approve each post on Telegram before it goes out.
+
+## How it works
+
+1. **Analyst** finds ideas, transcribes the reference and checks every fact with a source.
+2. **Copywriter** writes the slides or the reel script, four cover options and the caption.
+3. **Designer** renders the 1080x1350 images with the Python scripts in `scripts/`.
+4. **Video editor** cuts and assembles reels; **scene director** writes AI video prompts.
+5. **Reviewer** checks everything without having written any of it.
+6. **Publisher** uploads to the scheduler (Zernio), posts or schedules, and logs it in Notion.
+
+A daily report skill reads the metrics, and a test-batch skill runs small reel experiments and keeps the winners.
+
+## Project structure
+
+- `.claude/agents/`: one Markdown file per agent (role, model, rules)
+- `.claude/skills/`: `modelar-post` (the main pipeline), `relatorio-diario` (daily report), `lote-teste` (test batches)
+- `scripts/`: renderers for covers and slides (Pillow, Playwright), video slides (ffmpeg), uploads, Telegram approval bot, voice and metrics helpers
+- `openbot/`: the same team set up as autonomous agents
+- `nuvem/`: a portable version to run in the cloud
+- `clientes/_modelo/`: brand template (`marca.json` + `voz.md`) that each brand fills in
+- `docs/decisoes/`: short records of every design decision
+
+## Built with
+
+Claude Code (agents and skills), Python 3.12 (Pillow, Playwright), Node.js, ffmpeg, yt-dlp, whisper.cpp for transcription, the Zernio API for publishing, Notion for the content calendar, and a Telegram bot for approvals.
+
+## How to run
+
+```bash
 brew install python@3.12 ffmpeg yt-dlp
 python3.12 -m venv .venv
-.venv/bin/pip install --upgrade pip setuptools wheel
 .venv/bin/pip install playwright pillow
-(opcional) .venv/bin/python -m playwright install chromium   # só se não tiver o Google Chrome
+bash instalar.sh                 # installs the agents and skills into .claude/
+cp .env.example .env             # fill in your own keys
 ```
-Transcrição (opcional, leve): `brew install whisper-cpp` e baixe o modelo small (cerca de 470 MB) para `models/ggml-small.bin`.
 
-No Claude Code, deixe os conectores do Zernio e do Notion disponíveis (os mesmos que você usa no claude.ai).
+Then copy `clientes/_modelo` to `clientes/<your-brand>`, fill in `marca.json` and `voz.md`, open Claude Code in this folder and send a reference: `modele esse carrossel <link>`.
 
-## Usar
-Abra o Claude Code nesta pasta e mande a referência:
-```
-modele esse carrossel https://www.instagram.com/p/XXXX
-```
-Para outro cliente: `modele esse carrossel pro cliente padaria-x <link>`.
+Full instructions in Portuguese: [README.pt-BR.md](README.pt-BR.md).
 
-## Quem faz o quê
-| Agente | Modelo | Função |
-|---|---|---|
-| Gerente de Marketing (a conversa) | Opus 5.5 (`/model opus`) | decide, conversa, aprova |
-| analista | Opus 5.5 | radar, métricas, ideias, otimização, checa fatos com fonte |
-| copywriter | Opus 5.5 | roteiro, slides, 4 capas, prompt da imagem e legenda |
-| designer | Sonnet 5.5 | gera os arquivos e confere |
-| editor-de-video | Opus 5.5 | corta e monta o reel |
-| revisor | Sonnet 5.5 | controle de qualidade independente |
-| publicador | Haiku | Zernio e Notion |
+## Status
 
-O modelo de cada agente fica na linha `model:` do arquivo em `.claude/agents/`. Quem pensa em Opus 5.5, quem executa script em Sonnet 5.5, publicador em Haiku. Para testar outro, troque ali (sonnet, opus, haiku).
+Active personal project. Planned work is in [ROADMAP.md](ROADMAP.md).
 
-## Novo cliente
-1. Copie `clientes/_modelo` para `clientes/<nome>`.
-2. Preencha `marca.json` (cores, @, IDs do Zernio e do Notion) e `voz.md`.
-3. Coloque a foto ou logo em `fotos/`.
-Os agentes e scripts não mudam.
+## License
+
+MIT, see [LICENSE](LICENSE).
